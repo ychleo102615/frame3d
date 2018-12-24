@@ -17,16 +17,24 @@ class Frame{
 private:
     ofVec3f corner;
     ofVec2f lengthVector;
+    
     ofMesh mesh;
-    ofPath path;
+    ofPath pathFront;
     ofPath pathBack;
+    ofBoxPrimitive box;
+    ofBoxPrimitive innerBox;
+    
+    float thickNess;
+    float edgeRatio;
     
 public:
     Frame(ofVec3f c, ofVec2f l);
     void setCorLen(ofVec3f c, ofVec2f lv);
-    void drawFrame();
     void drawMeshFrame();
     void drawPathFrame();
+    
+    void build();
+    void buildNeededPlanes();
+    void buildFrontAndBackPlanes();
     void buildMesh();
-    void buildPath();
 };
