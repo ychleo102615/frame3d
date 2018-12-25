@@ -25,6 +25,7 @@ private:
     ofBoxPrimitive innerBox;
     
     float thickNess;
+    float thickNessRatio;
     float edgeRatio;
     
 public:

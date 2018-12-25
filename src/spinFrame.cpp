@@ -10,7 +10,8 @@
 Frame::Frame(ofVec3f c, ofVec2f lv){
     corner = c;
     lengthVector = lv;
-    thickNess = 200;
+    thickNessRatio = 0.03;
+    thickNess = lengthVector.length() * thickNessRatio;
     edgeRatio = 0.8;
     build();
 }
