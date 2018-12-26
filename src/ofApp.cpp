@@ -8,15 +8,31 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     
-    ofVec3f corner = ofVec3f(-500, -350, 0);
-    ofVec2f lengthVector = ofVec2f(1000, 700);
+//    ofVec3f center = ofVec3f(-500, -350, 0);
+//    ofVec2f lengthVector = ofVec2f(1000, 700);
+//
+//    ofVec3f center2 = ofVec3f(0,0,0);
+//    ofVec2f lengthVector2 = ofVec2f(1500, 1000);
+//
+//    ofVec3f center3 = ofVec3f(-500, -350, 1000);
+//    ofVec2f lengthVector3 = ofVec2f(2100, 2700);
+//
+//    frames.push_back(Frame(center, lengthVector));
+//    frames.push_back(Frame(center2, lengthVector2));
+//    frames.push_back(Frame(center3, lengthVector3));
     
-    frames.push_back(Frame(corner, lengthVector));
+    for(int i=0;i<10;i++){
+        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
+        ofVec2f lengthVector = ofVec2f(ofRandomWidth(), ofRandomHeight());
+        frames.push_back(Frame(center, lengthVector));
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    for(int i=0;i<frames.size();i++){
+        frames.at(i).update();
+    }
 }
 
 //--------------------------------------------------------------

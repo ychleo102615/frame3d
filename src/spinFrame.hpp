@@ -15,8 +15,10 @@
 
 class Frame{
 private:
+    ofVec3f center;
     ofVec3f corner;
     ofVec2f lengthVector;
+    ofVec2f radiusVector;
     
     ofMesh mesh;
     ofPath pathFront;
@@ -24,13 +26,15 @@ private:
     ofBoxPrimitive box;
     ofBoxPrimitive innerBox;
     
+    float phase;
+    float spinSpeed;
+    
     float thickNess;
     float thickNessRatio;
     float edgeRatio;
     
 public:
-    Frame(ofVec3f c, ofVec2f l);
-    void setCorLen(ofVec3f c, ofVec2f lv);
+    Frame(ofVec3f center_, ofVec2f lv);
     void drawMeshFrame();
     void drawPathFrame();
     
@@ -38,4 +42,6 @@ public:
     void buildNeededPlanes();
     void buildFrontAndBackPlanes();
     void buildMesh();
+    
+    void update();
 };

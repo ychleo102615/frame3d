@@ -7,23 +7,33 @@
 
 #include "spinFrame.hpp"
 
-Frame::Frame(ofVec3f c, ofVec2f lv){
-    corner = c;
+Frame::Frame(ofVec3f center_, ofVec2f lv){
+    center = center_;
     lengthVector = lv;
+    radiusVector = lengthVector/2;
+    corner = -radiusVector;
+    
     thickNessRatio = 0.03;
     thickNess = lengthVector.length() * thickNessRatio;
     edgeRatio = 0.8;
     build();
+    
+    phase = 0;
+    spinSpeed = radiusVector.getNormalized().x;
 }
 
 void Frame::drawMeshFrame(){
     ofPushStyle();
+    ofPushMatrix();
+    ofTranslate(center);
+    ofRotateYDeg(phase);
     ofSetColor(255);
     
     mesh.draw();
     ofSetColor(0);
     mesh.drawWireframe();
 
+    ofPopMatrix();
     ofPopStyle();
 }
 
@@ -38,10 +48,6 @@ void Frame::drawPathFrame(){
     ofPopStyle();
 }
 
-void Frame::setCorLen(ofVec3f c, ofVec2f lv){
-    
-}
-
 void Frame::build(){
     buildNeededPlanes();
     buildMesh();
@@ -52,6 +58,7 @@ void Frame::buildNeededPlanes(){
     
     box.set(lengthVector.x, lengthVector.y, thickNess);
     innerBox.set(lengthVector.x*edgeRatio, lengthVector.y*edgeRatio, thickNess);
+    
 }
 
 void Frame::buildFrontAndBackPlanes(){
@@ -80,4 +87,8 @@ void Frame::buildMesh(){
     mesh.append(innerBox.getSideMesh(2));
     mesh.append(innerBox.getSideMesh(4));
     mesh.append(innerBox.getSideMesh(5));
+}
+
+void Frame::update(){
+    phase += spinSpeed;
 }
