@@ -19,14 +19,16 @@ Frame::Frame(ofVec3f center_, ofVec2f lv){
     build();
     
     phase = 0;
-    spinSpeed = radiusVector.getNormalized().x;
+    spinSpeed = radiusVector.getNormalized().x * 4;
+    
+    initializePhysicalState();
 }
 
 void Frame::drawMeshFrame(){
     ofPushStyle();
     ofPushMatrix();
     ofTranslate(center);
-    ofRotateYDeg(phase);
+    ofRotateYDeg(rotateAngle);
     ofSetColor(255);
     
     mesh.draw();
@@ -91,4 +93,17 @@ void Frame::buildMesh(){
 
 void Frame::update(){
     phase += spinSpeed;
+    
+    time++;
+    rotateAngle += rotateSpeed;
+    rotateSpeed += rotateForce;
+    rotateForce = sin(time*radiusVector.x/360/30)*0.01;
+    
+}
+
+void Frame::initializePhysicalState(){
+    time = 0;
+    rotateAngle = 0;
+    rotateSpeed = 0;
+    rotateForce = 0;
 }

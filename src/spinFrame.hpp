@@ -29,6 +29,12 @@ private:
     float phase;
     float spinSpeed;
     
+    float rotateAngle;
+    float rotateSpeed;
+    float rotateForce;
+    float time;
+    
+    
     float thickNess;
     float thickNessRatio;
     float edgeRatio;
@@ -44,4 +50,5 @@ public:
     void buildMesh();
     
     void update();
+    void initializePhysicalState();
 };

@@ -21,9 +21,16 @@ void ofApp::setup(){
 //    frames.push_back(Frame(center2, lengthVector2));
 //    frames.push_back(Frame(center3, lengthVector3));
     
-    for(int i=0;i<10;i++){
+//    for(int i=0;i<10;i++){
+//        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
+//        ofVec2f lengthVector = ofVec2f(ofRandomWidth(), ofRandomHeight());
+//        frames.push_back(Frame(center, lengthVector));
+//    }
+    
+    for(int i=0;i<14;i++){
+//        ofVec3f center = ofVec3f(0,0,0);
         ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-        ofVec2f lengthVector = ofVec2f(ofRandomWidth(), ofRandomHeight());
+        ofVec2f lengthVector = ofVec2f(70*(i+1), 50*(i+1));
         frames.push_back(Frame(center, lengthVector));
     }
 }
