@@ -25,18 +25,18 @@ Frame::Frame(ofVec3f center_, ofVec2f lv){
 }
 
 void Frame::drawMeshFrame(){
-    ofPushStyle();
+//    ofPushStyle();
     ofPushMatrix();
     ofTranslate(center);
     ofRotateYDeg(rotateAngle);
-    ofSetColor(255);
+//    ofSetColor(255);
     
     mesh.draw();
-    ofSetColor(0);
-    mesh.drawWireframe();
+//    ofSetColor(0);
+//    mesh.drawWireframe();
 
     ofPopMatrix();
-    ofPopStyle();
+//    ofPopStyle();
 }
 
 void Frame::drawPathFrame(){
