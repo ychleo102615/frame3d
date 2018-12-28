@@ -73,14 +73,37 @@ void ofApp::draw(){
     
     ofSetColor(200, 100, 100);
     
-    ofDrawBox(0, 0, -500, 100);
-    ofDrawBox(0, 0, -1200, 500);
     
-    ofDrawBox(0, cos(ofGetElapsedTimef()*.6f)*360, -500, 100);
+    
+    // testing cube
+    int cubeLength = 100;
+    ofDrawBox(0, 0, -500, cubeLength);
+    ofDrawBox(0, 0, -1200, cubeLength*5);
+    
+    ofDrawBox(0, cos(ofGetElapsedTimef()*.6f)*360, -500, cubeLength);
     
     ofPushMatrix();
-    ofTranslate(0, cos(ofGetElapsedTimef()*.6f)*360, 0);
-    ofDrawBox(300, 0, -500, 100);
+    ofTranslate(300, cos(ofGetElapsedTimef()*.6f)*360, 0);
+    ofDrawBox(0, 0, -500, cubeLength);
+    ofPopMatrix();
+    
+    ofMesh mesh;
+    ofBoxPrimitive box = ofBoxPrimitive(cubeLength,cubeLength,cubeLength);
+    ofBoxPrimitive innerBox = ofBoxPrimitive(cubeLength*0.5,cubeLength*0.5,cubeLength*0.5);
+//    for(int i=0;i<6;i++)
+//        mesh.append(box.getSideMesh(i));
+    mesh.append(box.getSideMesh(1));
+    mesh.append(box.getSideMesh(2));
+    mesh.append(box.getSideMesh(4));
+    mesh.append(box.getSideMesh(5));
+    
+    mesh.append(innerBox.getSideMesh(1));
+    mesh.append(innerBox.getSideMesh(2));
+    mesh.append(innerBox.getSideMesh(4));
+    mesh.append(innerBox.getSideMesh(5));
+    ofPushMatrix();
+    ofTranslate(600, cos(ofGetElapsedTimef()*.6f)*360, 0);
+    mesh.draw();
     ofPopMatrix();
     
     ofDisableLighting();
