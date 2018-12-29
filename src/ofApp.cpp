@@ -12,6 +12,11 @@ void ofApp::setup(){
     
     pointLight.setSpecularColor( ofColor(255.f, 255.f, 0.f));
     pointLight.setPointLight();
+    directionalLight.setDiffuseColor(ofColor(0.f, 0.f, 255.f));
+    directionalLight.setSpecularColor(ofColor(255.f, 255.f, 255.f));
+    directionalLight.setDirectional();
+    directionalLight.setOrientation( ofVec3f(0, 90, 0) );
+
     
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
@@ -60,7 +65,8 @@ void ofApp::draw(){
     
     ofEnableLighting();
     material.begin();
-    pointLight.enable();
+//    pointLight.enable();
+    directionalLight.enable();
     
     
     
@@ -83,8 +89,9 @@ void ofApp::draw(){
     ofDrawBox(0, cos(ofGetElapsedTimef()*.6f)*360, -500, cubeLength);
     
     ofPushMatrix();
-    ofTranslate(300, cos(ofGetElapsedTimef()*.6f)*360, 0);
-    ofDrawBox(0, 0, -500, cubeLength);
+    ofTranslate(300, cos(ofGetElapsedTimef()*.6f)*360, -500);
+    ofRotateYDeg(ofGetFrameNum());
+    ofDrawBox(0, 0, 0, cubeLength);
     ofPopMatrix();
     
     ofMesh mesh;

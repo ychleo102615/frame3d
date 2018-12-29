@@ -51,4 +51,6 @@ public:
     
     void update();
     void initializePhysicalState();
+    
+    void addSurfaceNormalsToMesh(ofMesh &mesh);
 };

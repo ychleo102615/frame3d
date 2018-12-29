@@ -25,6 +25,7 @@ class ofApp : public ofBaseApp{
     ofEasyCam easyCam;
     
     ofLight pointLight;
+    ofLight directionalLight;
     ofMaterial material;
     
     void drawBase(float size);
