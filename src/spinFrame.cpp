@@ -65,26 +65,38 @@ void Frame::buildNeededPlanes(){
 }
 
 void Frame::buildFrontAndBackPlanes(){
-    ofVec3f zOffset = ofVec3f(0, 0, thickNess/2);
+    ofVec3f zOffset = ofVec3f(0, 0, -thickNess/2);
     ofVec3f insideEdgeCorner = corner+lengthVector*(1-edgeRatio)/2;
     
     pathFront.rectangle(corner+zOffset, lengthVector.x, lengthVector.y);
     pathFront.rectangle(insideEdgeCorner+zOffset, lengthVector.x*edgeRatio, lengthVector.y*edgeRatio);
     
-    zOffset = ofVec3f(0, 0, -thickNess/2);
+    zOffset = ofVec3f(0, 0, thickNess/2);
     pathBack.rectangle(corner+zOffset, lengthVector.x, lengthVector.y);
     pathBack.rectangle(insideEdgeCorner+zOffset, lengthVector.x*edgeRatio, lengthVector.y*edgeRatio);
 }
 
 void Frame::buildMesh(){
+    ofMesh lastMesh;
     mesh = pathFront.getTessellation();
+    mesh.flatNormals();
+    lastMesh = mesh;
     mesh.append(pathBack.getTessellation());
+    mesh.flatNormals();
+    flipNormal(mesh, lastMesh);
+    
+    
     
     // 0 and 3 means front and back
     mesh.append(box.getSideMesh(1));
     mesh.append(box.getSideMesh(2));
     mesh.append(box.getSideMesh(4));
     mesh.append(box.getSideMesh(5));
+//    mesh.clearNormals();
+//    addSurfaceNormalsToMesh(mesh);
+    lastMesh = mesh;
+    
+//    mesh.append(pathBack.getTessellation());
     
     mesh.append(innerBox.getSideMesh(1));
     mesh.append(innerBox.getSideMesh(2));
@@ -93,6 +105,7 @@ void Frame::buildMesh(){
     
 //    mesh.clearNormals();
 //    addSurfaceNormalsToMesh(mesh);
+    flipNormal(mesh, lastMesh);
 }
 
 void Frame::update(){
@@ -101,7 +114,7 @@ void Frame::update(){
     time++;
     rotateAngle += rotateSpeed;
     rotateSpeed += rotateForce;
-    rotateForce = sin(time*radiusVector.x/360/30)*0.01;
+//    rotateForce = sin(time*radiusVector.x/360/30)*0.01;
     
 }
 
@@ -114,11 +127,13 @@ void Frame::initializePhysicalState(){
 
 void Frame::addSurfaceNormalsToMesh(ofMesh &mesh) {
     
+//    int indexNum = mesh.getNumIndices();
     for (int i=0; i<mesh.getNumVertices(); i+=3) {
-        
-        ofVec3f v0 = mesh.getVertex(i);
-        ofVec3f v1 = mesh.getVertex(i+1);
-        ofVec3f v2 = mesh.getVertex(i+2);
+//    for (int i=0; i<mesh.getNumIndices(); i+=3) {
+    
+        ofVec3f v0 = mesh.getVertex(mesh.getIndex(i));
+        ofVec3f v1 = mesh.getVertex(mesh.getIndex(i+1));
+        ofVec3f v2 = mesh.getVertex(mesh.getIndex(i+2));
         
         ofVec3f U = v1 - v0;
         ofVec3f V = v2 - v0;
@@ -134,5 +149,11 @@ void Frame::addSurfaceNormalsToMesh(ofMesh &mesh) {
         mesh.addNormal(normal);
         mesh.addNormal(normal);
         mesh.addNormal(normal);
+    }
+}
+
+void Frame::flipNormal(ofMesh &mesh, ofMesh last){
+    for(int i=last.getNumNormals(); i<mesh.getNumNormals();i++){
+        mesh.setNormal(i, -mesh.getNormal(i));
     }
 }

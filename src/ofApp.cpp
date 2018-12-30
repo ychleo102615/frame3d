@@ -4,6 +4,7 @@ vector<Frame> frames;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofBackground(0);
     ofEnableDepthTest();
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
@@ -41,9 +42,9 @@ void ofApp::setup(){
 //    }
     
     for(int i=0;i<1;i++){
-        ofVec3f center = ofVec3f(100,100,100);
+        ofVec3f center = ofVec3f(0,0,0);
 //        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-        ofVec2f lengthVector = ofVec2f(700*(i+1), 500*(i+1));
+        ofVec2f lengthVector = ofVec2f(1000*(i+1), 1000*(i+1));
         frames.push_back(Frame(center, lengthVector));
     }
 }
@@ -54,18 +55,18 @@ void ofApp::update(){
         frames.at(i).update();
     }
     
-    pointLight.setPosition(0, 0, 0);
+    pointLight.setPosition(0, cos(ofGetElapsedTimef()*.6f)*1000, sin(ofGetElapsedTimef()*.6f)*1000);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackgroundGradient(ofColor(50), ofColor(200), OF_GRADIENT_CIRCULAR);
+//    ofBackgroundGradient(ofColor(50), ofColor(200), OF_GRADIENT_CIRCULAR);
     
     easyCam.begin();
     
     ofEnableLighting();
     material.begin();
-//    pointLight.enable();
+    pointLight.enable();
     directionalLight.enable();
     
     
@@ -116,7 +117,7 @@ void ofApp::draw(){
     ofDisableLighting();
     material.end();
     
-    ofDrawSphere(0, 0, 0, 20);
+    ofDrawSphere(pointLight.getPosition(), 20);
     
     easyCam.end();
     
