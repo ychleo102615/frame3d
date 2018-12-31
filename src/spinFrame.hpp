@@ -26,9 +26,6 @@ private:
     ofBoxPrimitive box;
     ofBoxPrimitive innerBox;
     
-    float phase;
-    float spinSpeed;
-    
     float rotateAngle;
     float rotateSpeed;
     float rotateForce;

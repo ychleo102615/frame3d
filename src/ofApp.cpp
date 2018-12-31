@@ -22,18 +22,6 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-//    ofVec3f center = ofVec3f(-500, -350, 0);
-//    ofVec2f lengthVector = ofVec2f(1000, 700);
-//
-//    ofVec3f center2 = ofVec3f(0,0,0);
-//    ofVec2f lengthVector2 = ofVec2f(1500, 1000);
-//
-//    ofVec3f center3 = ofVec3f(-500, -350, 1000);
-//    ofVec2f lengthVector3 = ofVec2f(2100, 2700);
-//
-//    frames.push_back(Frame(center, lengthVector));
-//    frames.push_back(Frame(center2, lengthVector2));
-//    frames.push_back(Frame(center3, lengthVector3));
     
 //    for(int i=0;i<10;i++){
 //        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
@@ -41,10 +29,10 @@ void ofApp::setup(){
 //        frames.push_back(Frame(center, lengthVector));
 //    }
     
-    for(int i=0;i<1;i++){
-        ofVec3f center = ofVec3f(0,0,0);
-//        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-        ofVec2f lengthVector = ofVec2f(1000*(i+1), 1000*(i+1));
+    for(int i=0;i<14;i++){
+//        ofVec3f center = ofVec3f(0,0,0);
+        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
+        ofVec2f lengthVector = ofVec2f(70*(i+1), 50*(i+1));
         frames.push_back(Frame(center, lengthVector));
     }
 }
