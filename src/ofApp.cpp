@@ -60,7 +60,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//    ofBackgroundGradient(ofColor(50), ofColor(200), OF_GRADIENT_CIRCULAR);
+    ofBackgroundGradient(ofColor(50), ofColor(200), OF_GRADIENT_CIRCULAR);
     
     easyCam.begin();
     
@@ -70,53 +70,19 @@ void ofApp::draw(){
     directionalLight.enable();
     
     
-    
     drawBase(1000);
     
     for(int i=0;i<frames.size();i++){
         frames.at(i).drawMeshFrame();
-//        frames.at(i).drawPathFrame();
     }
     
-    ofSetColor(200, 100, 100);
     
-    
-    
-    // testing cube
-    int cubeLength = 100;
-    ofDrawBox(0, 0, -500, cubeLength);
-    ofDrawBox(0, 0, -1200, cubeLength*5);
-    
-    ofDrawBox(0, cos(ofGetElapsedTimef()*.6f)*360, -500, cubeLength);
-    
-    ofPushMatrix();
-    ofTranslate(300, cos(ofGetElapsedTimef()*.6f)*360, -500);
-    ofRotateYDeg(ofGetFrameNum());
-    ofDrawBox(0, 0, 0, cubeLength);
-    ofPopMatrix();
-    
-    ofMesh mesh;
-    ofBoxPrimitive box = ofBoxPrimitive(cubeLength,cubeLength,cubeLength);
-    ofBoxPrimitive innerBox = ofBoxPrimitive(cubeLength*0.5,cubeLength*0.5,cubeLength*0.5);
-//    for(int i=0;i<6;i++)
-//        mesh.append(box.getSideMesh(i));
-    mesh.append(box.getSideMesh(1));
-    mesh.append(box.getSideMesh(2));
-    mesh.append(box.getSideMesh(4));
-    mesh.append(box.getSideMesh(5));
-    
-    mesh.append(innerBox.getSideMesh(1));
-    mesh.append(innerBox.getSideMesh(2));
-    mesh.append(innerBox.getSideMesh(4));
-    mesh.append(innerBox.getSideMesh(5));
-    ofPushMatrix();
-    ofTranslate(600, cos(ofGetElapsedTimef()*.6f)*360, 0);
-    mesh.draw();
-    ofPopMatrix();
+    drawTestingCubes();
     
     ofDisableLighting();
     material.end();
     
+    ofSetColor(200, 100, 100);
     ofDrawSphere(pointLight.getPosition(), 20);
     
     easyCam.end();
@@ -188,4 +154,47 @@ void ofApp::drawBase(float size){
     ofDrawLine(0, 0, 0, 0, size, 0);
     ofSetColor(ofColor::blue);
     ofDrawLine(0, 0, 0, 0, 0, size);
+    ofPopStyle();
+}
+
+void ofApp::drawTestingCubes(){
+    
+    // testing cube
+    int cubeLength = 100;
+    ofDrawBox(0, 0, -500, cubeLength);
+    ofDrawBox(0, 0, -1200, cubeLength*5);
+    
+    ofDrawBox(0, cos(ofGetElapsedTimef()*.6f)*360, -500, cubeLength);
+    
+    ofPushMatrix();
+    ofTranslate(300, cos(ofGetElapsedTimef()*.6f)*360, -500);
+    ofRotateYDeg(ofGetFrameNum());
+    ofDrawBox(0, 0, 0, cubeLength);
+    ofPopMatrix();
+    
+    ofMesh mesh;
+    ofBoxPrimitive box = ofBoxPrimitive(cubeLength,cubeLength,cubeLength);
+    ofBoxPrimitive innerBox = ofBoxPrimitive(cubeLength*0.5,cubeLength*0.5,cubeLength*0.5);
+    //    for(int i=0;i<6;i++)
+    //        mesh.append(box.getSideMesh(i));
+    mesh.append(box.getSideMesh(1));
+    mesh.append(box.getSideMesh(2));
+    mesh.append(box.getSideMesh(4));
+    mesh.append(box.getSideMesh(5));
+    
+    mesh.append(innerBox.getSideMesh(1));
+    mesh.append(innerBox.getSideMesh(2));
+    mesh.append(innerBox.getSideMesh(4));
+    mesh.append(innerBox.getSideMesh(5));
+    ofPushMatrix();
+    ofTranslate(600, cos(ofGetElapsedTimef()*.6f)*360, 0);
+    mesh.draw();
+    ofPopMatrix();
+    mesh.clear();
+    
+    ofPath testPath;
+    testPath.rectangle(-cubeLength/2, -cubeLength/2, cubeLength, cubeLength);
+    mesh = testPath.getTessellation();
+    mesh.flatNormals();
+    mesh.draw();
 }

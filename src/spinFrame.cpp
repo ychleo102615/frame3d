@@ -92,19 +92,16 @@ void Frame::buildMesh(){
     mesh.append(box.getSideMesh(2));
     mesh.append(box.getSideMesh(4));
     mesh.append(box.getSideMesh(5));
-//    mesh.clearNormals();
-//    addSurfaceNormalsToMesh(mesh);
     lastMesh = mesh;
     
 //    mesh.append(pathBack.getTessellation());
+//    mesh.flatNormals();
     
     mesh.append(innerBox.getSideMesh(1));
     mesh.append(innerBox.getSideMesh(2));
     mesh.append(innerBox.getSideMesh(4));
     mesh.append(innerBox.getSideMesh(5));
     
-//    mesh.clearNormals();
-//    addSurfaceNormalsToMesh(mesh);
     flipNormal(mesh, lastMesh);
 }
 

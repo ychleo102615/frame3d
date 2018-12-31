@@ -29,4 +29,5 @@ class ofApp : public ofBaseApp{
     ofMaterial material;
     
     void drawBase(float size);
+    void drawTestingCubes();
 };
