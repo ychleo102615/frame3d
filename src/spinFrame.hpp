@@ -21,6 +21,7 @@ private:
     ofVec2f radiusVector;
     
     ofMesh mesh;
+    ofMesh presentMesh;
     ofPath pathFront;
     ofPath pathBack;
     ofBoxPrimitive box;
@@ -51,4 +52,6 @@ public:
     
     void addSurfaceNormalsToMesh(ofMesh &mesh);
     void flipNormal(ofMesh &mesh, ofMesh last);
+    
+    void transform();
 };

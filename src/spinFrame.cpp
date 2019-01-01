@@ -28,7 +28,8 @@ void Frame::drawMeshFrame(){
     ofTranslate(center);
     ofRotateYDeg(rotateAngle);
     
-    mesh.draw();
+//    mesh.draw();
+    presentMesh.draw();
 //    ofSetColor(0);
 //    mesh.drawWireframe();
 
@@ -50,6 +51,7 @@ void Frame::drawPathFrame(){
 void Frame::build(){
     buildNeededPlanes();
     buildMesh();
+    presentMesh = mesh;
 }
 
 void Frame::buildNeededPlanes(){
@@ -109,7 +111,7 @@ void Frame::update(){
     rotateAngle += rotateSpeed;
     rotateSpeed += rotateForce;
     rotateForce = sin(time*radiusVector.x/360/30)*0.01;
-    
+    transform();
 }
 
 
@@ -143,5 +145,17 @@ void Frame::addSurfaceNormalsToMesh(ofMesh &mesh) {
         mesh.addNormal(normal);
         mesh.addNormal(normal);
         mesh.addNormal(normal);
+    }
+}
+
+
+void Frame::transform(){
+    
+    float factor;
+    
+    factor = sin(time/10)/10 + 1;
+    
+    for(int i=0;i<mesh.getNumVertices();i++){
+        presentMesh.setVertex(i, mesh.getVertex(i) * factor);
     }
 }

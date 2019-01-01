@@ -143,6 +143,7 @@ void ofApp::drawBase(float size){
     ofSetColor(ofColor::blue);
     ofDrawLine(0, 0, 0, 0, 0, size);
     ofPopStyle();
+    
 }
 
 void ofApp::drawTestingCubes(){
