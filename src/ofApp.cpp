@@ -29,10 +29,11 @@ void ofApp::setup(){
 //        frames.push_back(Frame(center, lengthVector));
 //    }
     
-    for(int i=0;i<14;i++){
+    for(int i=0;i<24;i++){
 //        ofVec3f center = ofVec3f(0,0,0);
         ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-        ofVec2f lengthVector = ofVec2f(70*(i+1), 50*(i+1));
+//        ofVec2f lengthVector = ofVec2f(70*(i+1), 50*(i+1));
+        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
         frames.push_back(Frame(center, lengthVector));
     }
 }
