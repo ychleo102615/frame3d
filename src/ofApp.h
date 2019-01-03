@@ -23,6 +23,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
     ofEasyCam easyCam;
+    ofCamera cam;
+    bool useCam;
     
     ofLight pointLight;
     ofLight directionalLight;

@@ -36,6 +36,11 @@ void ofApp::setup(){
         ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
         frames.push_back(Frame(center, lengthVector));
     }
+    
+    
+    cam.setPosition(0, 0, 0);
+    cam.lookAt(ofVec3f(1,1,1));
+    useCam = false;
 }
 
 //--------------------------------------------------------------
@@ -50,8 +55,12 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackgroundGradient(ofColor(50), ofColor(200), OF_GRADIENT_CIRCULAR);
+//    glEnable(GL_CULL_FACE);
     
-    easyCam.begin();
+    if(useCam)
+        cam.begin();
+    else
+        easyCam.begin();
     
     ofEnableLighting();
     material.begin();
@@ -74,14 +83,18 @@ void ofApp::draw(){
     ofSetColor(200, 100, 100);
     ofDrawSphere(pointLight.getPosition(), 20);
     
-    easyCam.end();
+    if(useCam)
+        cam.end();
+    else
+        easyCam.end();
     
     
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if(key == ' ')
+        useCam = !useCam;
 }
 
 //--------------------------------------------------------------
