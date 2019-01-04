@@ -39,7 +39,7 @@ void ofApp::setup(){
     
     
     cam.setPosition(0, 0, 0);
-    cam.lookAt(ofVec3f(1,1,1));
+    cam.lookAt(ofVec3f(ofGetWidth(), ofGetHeight(), 1000));
     useCam = false;
 }
 
@@ -50,6 +50,17 @@ void ofApp::update(){
     }
     
     pointLight.setPosition(0, cos(ofGetElapsedTimef()*.6f)*1000, sin(ofGetElapsedTimef()*.6f)*1000);
+    
+    float time = ofGetElapsedTimef();
+    float deepNess = 1000;
+    float camX, camY, camZ;
+    camX = (1-cos(ofGetElapsedTimef()*0.6)) * ofGetWidth()/2;
+    camZ = (1-sin(ofGetElapsedTimef()*0.6)) * deepNess/2;
+    camY = (1-cos(ofGetElapsedTimef()*3)) * ofGetHeight()/2/5 + ofGetHeight()/2;
+    
+    ofVec3f camPos = ofVec3f(camX, camY, camZ);
+    cam.setPosition(camPos);
+    cam.lookAt(ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2));
 }
 
 //--------------------------------------------------------------
