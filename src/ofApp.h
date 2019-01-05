@@ -30,6 +30,9 @@ class ofApp : public ofBaseApp{
     ofLight directionalLight;
     ofMaterial material;
     
+    const float deepNess = 1000;
+    
     void drawBase(float size);
     void drawTestingCubes();
+    void camMove();
 };
