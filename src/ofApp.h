@@ -31,6 +31,7 @@ class ofApp : public ofBaseApp{
     ofMaterial material;
     
     const float deepNess = 1000;
+    const float cycleTime = 10;
     
     void drawBase(float size);
     void drawTestingCubes();
