@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A18C10D21E3AAAA00CF6B91 /* mathMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A18C10B21E3AAAA00CF6B91 /* mathMove.cpp */; };
 		2A25138621D13135007A65B3 /* spinFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A25138521D13135007A65B3 /* spinFrame.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A18C10B21E3AAAA00CF6B91 /* mathMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mathMove.cpp; sourceTree = "<group>"; };
+		2A18C10C21E3AAAA00CF6B91 /* mathMove.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mathMove.hpp; sourceTree = "<group>"; };
 		2A25138421D13135007A65B3 /* spinFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spinFrame.hpp; sourceTree = "<group>"; };
 		2A25138521D13135007A65B3 /* spinFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spinFrame.cpp; sourceTree = "<group>"; };
 		E42962AC2163EDD300A6A9E2 /* ofCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofCamera.cpp; path = ../../../libs/openFrameworks/3d/ofCamera.cpp; sourceTree = SOURCE_ROOT; };
@@ -538,6 +541,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				2A25138521D13135007A65B3 /* spinFrame.cpp */,
 				2A25138421D13135007A65B3 /* spinFrame.hpp */,
+				2A18C10B21E3AAAA00CF6B91 /* mathMove.cpp */,
+				2A18C10C21E3AAAA00CF6B91 /* mathMove.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -642,6 +647,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				2A18C10D21E3AAAA00CF6B91 /* mathMove.cpp in Sources */,
 				2A25138621D13135007A65B3 /* spinFrame.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

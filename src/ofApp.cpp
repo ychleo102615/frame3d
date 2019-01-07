@@ -206,6 +206,14 @@ void ofApp::drawTestingCubes(){
 
 void ofApp::camMove(){
 //    float deepNess = 1000;
+    
+    SpiralMove sp;
+    MoveControl mc = *new MoveControl(&sp);
+//    mc.setMovementType(&sp);
+    float farRatio = mc.get(ofGetElapsedTimef(), cycleTime);
+    cout << "farRatio: " << farRatio << endl;
+    
+    
     float camX, camY, camZ;
     float ratio = fmod(ofGetElapsedTimef(), cycleTime)/cycleTime;
     float time2Radiant = TWO_PI/cycleTime;
