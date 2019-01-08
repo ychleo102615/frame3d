@@ -13,21 +13,25 @@
 
 #endif /* mathMove_hpp */
 
-class MathMove{
+class Move{
 public:
-    float getTargetBy(float time, float cycleTime);
+    virtual float get(float time, float cycleTime);
+    Move(){};
+    virtual ~Move(){};
 };
 
-class SpiralMove : public MathMove{
+class SpiralMove : public Move{
 public:
-    float getTargetBy(float time, float cycleTime);
+    float get(float time, float cycleTime);
+    SpiralMove(){};
+    ~SpiralMove(){};
 };
 
 class MoveControl{
 public:
-    MathMove *move;
+    Move *move;
     
-    MoveControl(MathMove *move_);
-    void setMovementType(MathMove *move_);
-    float get(float t, float ct);
+//    MoveControl(MathMove *move_);
+    void setMovementType(Move *move_);
+    float get(float time, float cycleTime);
 };

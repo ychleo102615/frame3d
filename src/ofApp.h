@@ -27,6 +27,10 @@ class ofApp : public ofBaseApp{
     ofCamera cam;
     bool useCam;
     
+    
+    SpiralMove sp;
+    MoveControl mc;
+    
     ofLight pointLight;
     ofLight directionalLight;
     ofMaterial material;

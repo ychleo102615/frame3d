@@ -7,7 +7,7 @@
 
 #include "mathMove.hpp"
 
-float SpiralMove::getTargetBy(float time, float cycleTime){
+float SpiralMove::get(float time, float cycleTime){
     float ratio = 0.9;
     float currentRatio = fmod(time, cycleTime)/cycleTime;
     
@@ -19,14 +19,18 @@ float SpiralMove::getTargetBy(float time, float cycleTime){
     }
 }
 
-MoveControl::MoveControl(MathMove *move_){
+float Move::get(float time, float cycleTime){
+    return 1;
+}
+
+//MoveControl::MoveControl(Move *move_){
+//    move = move_;
+//}
+
+void MoveControl::setMovementType(Move *move_){
     move = move_;
 }
 
-void MoveControl::setMovementType(MathMove *move_){
-    move = move_;
-}
-
-float MoveControl::get(float t, float ct){
-    return move->getTargetBy(t, ct);
+float MoveControl::get(float time, float cycleTime){
+    return move->get(time, cycleTime);
 }
