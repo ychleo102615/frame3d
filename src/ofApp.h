@@ -27,13 +27,15 @@ class ofApp : public ofBaseApp{
     ofCamera cam;
     bool useCam;
     
+    ofLight pointLight;
+    ofLight directionalLight;
+    ofMaterial material;
+    
+    ofVec3f hallCenter;
     
     SpiralMove sp;
     MoveControl mc;
     
-    ofLight pointLight;
-    ofLight directionalLight;
-    ofMaterial material;
     
     const float deepNess = 1000;
     const float cycleTime = 10;

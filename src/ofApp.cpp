@@ -22,6 +22,8 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
+    hallCenter = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2);
+    
     
 //    for(int i=0;i<10;i++){
 //        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
@@ -39,7 +41,7 @@ void ofApp::setup(){
     
     
     cam.setPosition(0, 0, 0);
-    cam.lookAt(ofVec3f(ofGetWidth(), ofGetHeight(), 1000));
+    cam.lookAt(hallCenter);
     useCam = false;
 }
 
@@ -56,7 +58,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackgroundGradient(ofColor(50), ofColor(200), OF_GRADIENT_CIRCULAR);
+    ofBackgroundGradient(ofColor(50), ofColor(100), OF_GRADIENT_CIRCULAR);
 //    glEnable(GL_CULL_FACE);
     
     if(useCam)
@@ -213,17 +215,20 @@ void ofApp::camMove(){
     float farRatio = mc.get(ofGetElapsedTimef(), cycleTime);
     cout << "farRatio: " << farRatio << " in " << ofGetElapsedTimef() << endl;
     
+    float triOffset = 0.375 * TWO_PI;
     
-    float camX, camY, camZ;
-    float ratio = fmod(ofGetElapsedTimef(), cycleTime)/cycleTime;
+    ofVec3f camPos;
+    
     float time2Radiant = TWO_PI/cycleTime;
-    camX = (1-cos(ofGetElapsedTimef()*time2Radiant)) * ofGetWidth()/2 * ratio;
-    camZ = (1-sin(ofGetElapsedTimef()*time2Radiant)) * deepNess/2 * ratio;
+    
+    float phase = triOffset + ofGetElapsedTimef()*time2Radiant;
+    
+    camPos.x = hallCenter.x + cos(phase) * ofGetWidth()/2 * farRatio;
+    camPos.z = hallCenter.z + sin(phase) * deepNess/2 * farRatio;
     float oscilationPeriod = 2.0;
-    camY = (1-cos(ofGetElapsedTimef()/oscilationPeriod * TWO_PI)) * ofGetHeight()/2/5 + ofGetHeight()/2;
+    float oscilationAmplitude = hallCenter.y/5;
+    camPos.y = hallCenter.y + cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
     
-    
-    ofVec3f camPos = ofVec3f(camX, camY, camZ);
     cam.setPosition(camPos);
-    cam.lookAt(ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2));
+    cam.lookAt(hallCenter);
 }
