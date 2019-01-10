@@ -8,15 +8,18 @@
 #include "mathMove.hpp"
 
 float SpiralMove::get(float time, float cycleTime){
-    float ratio = 0.9;
-    float currentRatio = fmod(time, cycleTime)/cycleTime;
     
-    if(currentRatio < ratio){
-        return currentRatio/ratio;
+    float currentRatio = fmod(time, cycleTime)/cycleTime;
+    float target;
+    
+    if(currentRatio < peakRatio){
+        target = currentRatio/peakRatio;
     }
     else{
-        return 1 - (currentRatio - ratio)/(1 - ratio);
+        target = 1 - (currentRatio - peakRatio)/(1 - peakRatio);
     }
+    
+    return target * (upLet - lowLet) + lowLet;
 }
 
 float Move::get(float time, float cycleTime){

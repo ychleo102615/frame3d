@@ -81,6 +81,9 @@ void ofApp::draw(){
     
     drawTestingCubes();
     
+    ofSetColor(0, 228, 255);
+    ofDrawSphere(hallCenter, 20);
+    
     ofDisableLighting();
     material.end();
     

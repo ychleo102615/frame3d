@@ -25,6 +25,10 @@ public:
     float get(float time, float cycleTime);
     SpiralMove(){};
     ~SpiralMove(){};
+    
+    float peakRatio = 0.9;
+    float upLet = 1.3;
+    float lowLet = 0.3;
 };
 
 class MoveControl{
