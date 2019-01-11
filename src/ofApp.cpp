@@ -11,7 +11,7 @@ void ofApp::setup(){
     
     ofSetSmoothLighting(true);
     
-    pointLight.setSpecularColor( ofColor(255.f, 255.f, 0.f));
+    pointLight.setSpecularColor( ofColor(255.f, 255.f, 255.f));
     pointLight.setPointLight();
     directionalLight.setDiffuseColor(ofColor(0.f, 0.f, 255.f));
     directionalLight.setSpecularColor(ofColor(255.f, 255.f, 255.f));

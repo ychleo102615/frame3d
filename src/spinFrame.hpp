@@ -21,7 +21,7 @@ private:
     ofVec2f radiusVector;
     
     ofMesh mesh;
-    ofMesh presentMesh;
+    ofMesh transformedMesh;
     ofPath pathFront;
     ofPath pathBack;
     ofBoxPrimitive box;
@@ -36,6 +36,9 @@ private:
     float thickNess;
     float thickNessRatio;
     float edgeRatio;
+    
+    ofFloatColor color;
+    ofMaterial material;
     
 public:
     Frame(ofVec3f center_, ofVec2f lv);

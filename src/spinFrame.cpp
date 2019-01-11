@@ -13,6 +13,9 @@ Frame::Frame(ofVec3f center_, ofVec2f lv){
     radiusVector = lengthVector/2;
     corner = -radiusVector;
     
+//    color = ofColor(ofRandom(256),ofRandom(256),ofRandom(256));
+    color = ofFloatColor::steelBlue;
+    
     thickNessRatio = 0.03;
 //    thickNessRatio = 0.1;
     thickNess = lengthVector.length() * thickNessRatio;
@@ -29,7 +32,9 @@ void Frame::drawMeshFrame(){
     ofRotateYDeg(rotateAngle);
     
 //    mesh.draw();
-    presentMesh.draw();
+    material.begin();
+    transformedMesh.draw();
+    material.end();
 //    ofSetColor(0);
 //    mesh.drawWireframe();
 
@@ -51,7 +56,8 @@ void Frame::drawPathFrame(){
 void Frame::build(){
     buildNeededPlanes();
     buildMesh();
-    presentMesh = mesh;
+    transformedMesh = mesh;
+    material.setDiffuseColor(color);
 }
 
 void Frame::buildNeededPlanes(){
@@ -156,6 +162,6 @@ void Frame::transform(){
     factor = sin(time/10)/10 + 1;
     
     for(int i=0;i<mesh.getNumVertices();i++){
-        presentMesh.setVertex(i, mesh.getVertex(i) * factor);
+        transformedMesh.setVertex(i, mesh.getVertex(i) * factor);
     }
 }
