@@ -220,17 +220,19 @@ void ofApp::camMove(){
     
     float triOffset = 0.375 * TWO_PI;
     
-    ofVec3f camPos;
+    ofVec3f relativeCamPos;
     
     float time2Radiant = TWO_PI/cycleTime;
     
     float phase = triOffset + ofGetElapsedTimef()*time2Radiant;
     
-    camPos.x = hallCenter.x + cos(phase) * ofGetWidth()/2 * farRatio;
-    camPos.z = hallCenter.z + sin(phase) * deepNess/2 * farRatio;
+    relativeCamPos.x = cos(phase) * ofGetWidth()/2 * farRatio;
+    relativeCamPos.z = sin(phase) * deepNess/2 * farRatio;
     float oscilationPeriod = 2.0;
     float oscilationAmplitude = hallCenter.y/5;
-    camPos.y = hallCenter.y + cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
+    relativeCamPos.y = cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
+    
+    ofVec3f camPos = relativeCamPos + hallCenter;
     
     cam.setPosition(camPos);
     cam.lookAt(hallCenter);
