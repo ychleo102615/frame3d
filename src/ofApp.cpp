@@ -214,8 +214,9 @@ void ofApp::camMove(){
 //    SpiralMove sp;
 //    MoveControl mc;
 //    MoveControl mc = *new MoveControl(&sp);
+    sp.setParameter(cycleTime, 1);
     mc.setMovementType(&sp);
-    float farRatio = mc.get(ofGetElapsedTimef(), cycleTime);
+    float farRatio = mc.get(ofGetElapsedTimef());
     cout << "farRatio: " << farRatio << " in " << ofGetElapsedTimef() << endl;
     
     float triOffset = 0.375 * TWO_PI;
