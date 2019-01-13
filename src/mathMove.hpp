@@ -15,22 +15,23 @@
 
 class Move{
 public:
-    virtual float get(float time);
+    virtual ofVec3f get(float time);
     Move(){};
     virtual ~Move(){};
-    void setSpaceDeepNess(float deepNess_);
+    void setSpaceRange(float width_, float height_, float deepNess_);
     void setParameter();
     
+    float width;
+    float height;
     float deepNess;
 };
 
 class SpiralMove : public Move{
 public:
-    float get(float time);
+    void setParameter(float period_, int cycleNum_);
+    ofVec3f get(float time);
     SpiralMove(){};
     ~SpiralMove(){};
-    void setParameter(float period_, int cycleNum_);
-    
     
     float peakRatio = 0.9;
     float upLet = 1.3;
@@ -44,7 +45,6 @@ class MoveControl{
 public:
     Move *move;
     
-//    MoveControl(MathMove *move_);
     void setMovementType(Move *move_);
-    float get(float time);
+    ofVec3f get(float time);
 };

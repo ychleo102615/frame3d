@@ -211,29 +211,16 @@ void ofApp::drawTestingCubes(){
 
 void ofApp::camMove(){
     
-//    SpiralMove sp;
-//    MoveControl mc;
-//    MoveControl mc = *new MoveControl(&sp);
-    sp.setParameter(cycleTime, 1);
+    sp.setSpaceRange(ofGetWidth(), 0, deepNess);
+    sp.setParameter(cycleTime, 2);
     mc.setMovementType(&sp);
-    float farRatio = mc.get(ofGetElapsedTimef());
-    cout << "farRatio: " << farRatio << " in " << ofGetElapsedTimef() << endl;
     
-    float triOffset = 0.375 * TWO_PI;
-    
-    ofVec3f relativeCamPos;
-    
-    float time2Radiant = TWO_PI/cycleTime;
-    
-    float phase = triOffset + ofGetElapsedTimef()*time2Radiant;
-    
-    relativeCamPos.x = cos(phase) * ofGetWidth()/2 * farRatio;
-    relativeCamPos.z = sin(phase) * deepNess/2 * farRatio;
+    ofVec3f verticalShift = ofVec3f(0,0,0);
     float oscilationPeriod = 2.0;
     float oscilationAmplitude = hallCenter.y/5;
-    relativeCamPos.y = cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
+    verticalShift.y = cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
     
-    ofVec3f camPos = relativeCamPos + hallCenter;
+    ofVec3f camPos = hallCenter + mc.get(ofGetElapsedTimef()) + verticalShift;
     
     cam.setPosition(camPos);
     cam.lookAt(hallCenter);
