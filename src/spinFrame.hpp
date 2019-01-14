@@ -53,7 +53,6 @@ public:
     void update();
     void initializePhysicalState();
     
-    void addSurfaceNormalsToMesh(ofMesh &mesh);
     void flipNormal(ofMesh &mesh, ofMesh last);
     
     void transform();

@@ -17,6 +17,12 @@ void Move::setSpaceRange(float width_, float height_, float deepNess_){
     deepNess = deepNess_;
 }
 
+void Move::setMoveRange(ofVec3f range){
+    width = range.x;
+    height = range.y;
+    deepNess = range.z;
+}
+
 void SpiralMove::setParameter(float period_, int cycleNum_){
     period = period_;
     cycleNum = cycleNum_;

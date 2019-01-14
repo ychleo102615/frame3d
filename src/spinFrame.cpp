@@ -13,7 +13,6 @@ Frame::Frame(ofVec3f center_, ofVec2f lv){
     radiusVector = lengthVector/2;
     corner = -radiusVector;
     
-//    color = ofColor(ofRandom(256),ofRandom(256),ofRandom(256));
     color = ofFloatColor::steelBlue;
     
     thickNessRatio = 0.03;
@@ -35,7 +34,6 @@ void Frame::drawMeshFrame(){
     material.begin();
     transformedMesh.draw();
     material.end();
-//    ofSetColor(0);
 //    mesh.drawWireframe();
 
     ofPopMatrix();
@@ -126,32 +124,6 @@ void Frame::initializePhysicalState(){
     rotateAngle = 0;
     rotateSpeed = 0;
     rotateForce = 0;
-}
-
-
-void Frame::addSurfaceNormalsToMesh(ofMesh &mesh) {
-    
-    for (int i=0; i<mesh.getNumVertices(); i+=3) {
-        
-        ofVec3f v0 = mesh.getVertex(mesh.getIndex(i));
-        ofVec3f v1 = mesh.getVertex(mesh.getIndex(i+1));
-        ofVec3f v2 = mesh.getVertex(mesh.getIndex(i+2));
-        
-        ofVec3f U = v1 - v0;
-        ofVec3f V = v2 - v0;
-        
-        float x = (U.y * V.z) - (U.z * V.y);
-        float y = (U.z * V.x) - (U.x * V.z);
-        float z = (U.x * V.y) - (U.y * V.x);
-        
-        ofVec3f normal(x,y,z);
-        
-        normal.normalize();
-        
-        mesh.addNormal(normal);
-        mesh.addNormal(normal);
-        mesh.addNormal(normal);
-    }
 }
 
 

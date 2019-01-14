@@ -19,6 +19,7 @@ public:
     Move(){};
     virtual ~Move(){};
     void setSpaceRange(float width_, float height_, float deepNess_);
+    void setMoveRange(ofVec3f range);
     void setParameter();
     
     float width;

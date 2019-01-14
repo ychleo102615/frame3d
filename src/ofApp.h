@@ -37,8 +37,9 @@ class ofApp : public ofBaseApp{
     MoveControl mc;
     
     
-    const float deepNess = 1000;
+    const float deepNess = 3000;//1000;
     const float cycleTime = 10;
+    ofVec3f spaceRange;
     
     void drawBase(float size);
     void drawTestingCubes();

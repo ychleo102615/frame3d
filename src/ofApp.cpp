@@ -22,21 +22,21 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-    hallCenter = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2);
+    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight(), deepNess);
+//    hallCenter = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2);
+    hallCenter = spaceRange/2;
     
-    
-//    for(int i=0;i<10;i++){
-//        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-//        ofVec2f lengthVector = ofVec2f(ofRandomWidth(), ofRandomHeight());
-//        frames.push_back(Frame(center, lengthVector));
-//    }
-    
-    for(int i=0;i<24;i++){
-//        ofVec3f center = ofVec3f(0,0,0);
-        ofVec3f center = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
+
+    for(int i=0;i<100;i++){//24
+//        ofVec3f frameCenter = ofVec3f(0,0,0);
+//        ofVec3f frameCenter = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
+        ofVec3f frameCenter = ofVec3f(ofRandom(spaceRange.x), ofRandom(spaceRange.y), ofRandom(spaceRange.z));
+        
 //        ofVec2f lengthVector = ofVec2f(70*(i+1), 50*(i+1));
-        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
-        frames.push_back(Frame(center, lengthVector));
+//        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
+        float r = ofRandom(30);
+        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (r+1)/5), 50*pow(1.5, (r+1)/5));
+        frames.push_back(Frame(frameCenter, lengthVector));
     }
     
     
@@ -211,13 +211,14 @@ void ofApp::drawTestingCubes(){
 
 void ofApp::camMove(){
     
-    sp.setSpaceRange(ofGetWidth(), 0, deepNess);
+//    sp.setSpaceRange(ofGetWidth(), 0, deepNess);
+    sp.setMoveRange(spaceRange);
     sp.setParameter(cycleTime, 2);
     mc.setMovementType(&sp);
     
     ofVec3f verticalShift = ofVec3f(0,0,0);
     float oscilationPeriod = 2.0;
-    float oscilationAmplitude = hallCenter.y/5;
+    float oscilationAmplitude = spaceRange.y/5;//hallCenter.y/5;
     verticalShift.y = cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
     
     ofVec3f camPos = hallCenter + mc.get(ofGetElapsedTimef()) + verticalShift;
