@@ -15,16 +15,16 @@
 
 class Move{
 public:
-    virtual ofVec3f get(float time);
     Move(){};
     virtual ~Move(){};
-    void setSpaceRange(float width_, float height_, float deepNess_);
-    void setMoveRange(ofVec3f range);
+    virtual ofVec3f get(float time);
+    void setMoveRange(ofVec3f range_);
     void setParameter();
     
     float width;
     float height;
     float deepNess;
+    ofVec3f range;
 };
 
 class SpiralMove : public Move{
@@ -40,6 +40,14 @@ public:
     
     float period;
     int cycleNum;
+};
+
+class VibrateMove : public Move{
+public:
+    void setParameter(float period_);
+    ofVec3f get(float time);
+    
+    float period;
 };
 
 class MoveControl{

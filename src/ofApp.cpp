@@ -22,7 +22,7 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight(), deepNess);
+    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*3, deepNess);
 //    hallCenter = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2);
     hallCenter = spaceRange/2;
     
@@ -39,6 +39,15 @@ void ofApp::setup(){
         frames.push_back(Frame(frameCenter, lengthVector));
     }
     
+    
+    
+    // Setting camera move rule, check camMove()
+    sp.setMoveRange(spaceRange);
+    sp.setParameter(cycleTime, 2);
+    mcSpiral.setMovementType(&sp);
+    vb.setMoveRange(ofVec3f(0, spaceRange.y/10, 0));
+    vb.setParameter(2.0);
+    mcVibrate.setMovementType(&vb);
     
     cam.setPosition(0, 0, 0);
     cam.lookAt(hallCenter);
@@ -94,8 +103,6 @@ void ofApp::draw(){
         cam.end();
     else
         easyCam.end();
-    
-    
 }
 
 //--------------------------------------------------------------
@@ -210,18 +217,8 @@ void ofApp::drawTestingCubes(){
 }
 
 void ofApp::camMove(){
-    
-//    sp.setSpaceRange(ofGetWidth(), 0, deepNess);
-    sp.setMoveRange(spaceRange);
-    sp.setParameter(cycleTime, 2);
-    mc.setMovementType(&sp);
-    
-    ofVec3f verticalShift = ofVec3f(0,0,0);
-    float oscilationPeriod = 2.0;
-    float oscilationAmplitude = spaceRange.y/5;//hallCenter.y/5;
-    verticalShift.y = cos(ofGetElapsedTimef()/oscilationPeriod*TWO_PI)*oscilationAmplitude;
-    
-    ofVec3f camPos = hallCenter + mc.get(ofGetElapsedTimef()) + verticalShift;
+
+    ofVec3f camPos = hallCenter + mcSpiral.get(ofGetElapsedTimef()) + mcVibrate.get(ofGetElapsedTimef());
     
     cam.setPosition(camPos);
     cam.lookAt(hallCenter);

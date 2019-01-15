@@ -34,7 +34,9 @@ class ofApp : public ofBaseApp{
     ofVec3f hallCenter;
     
     SpiralMove sp;
-    MoveControl mc;
+    MoveControl mcSpiral;
+    VibrateMove vb;
+    MoveControl mcVibrate;
     
     
     const float deepNess = 3000;//1000;

@@ -11,16 +11,11 @@ ofVec3f Move::get(float time){
     return ofVec3f(0,0,0);
 }
 
-void Move::setSpaceRange(float width_, float height_, float deepNess_){
-    width = width_;
-    height = height_;
-    deepNess = deepNess_;
-}
-
-void Move::setMoveRange(ofVec3f range){
-    width = range.x;
-    height = range.y;
-    deepNess = range.z;
+void Move::setMoveRange(ofVec3f range_){
+//    width = range.x;
+//    height = range.y;
+//    deepNess = range.z;
+    range = range_;
 }
 
 void SpiralMove::setParameter(float period_, int cycleNum_){
@@ -49,17 +44,23 @@ ofVec3f SpiralMove::get(float time){
     
     float phase = time*time2Radiant;
     
-    relativeCamPos.x = cos(phase) * width/2 * targetShiftedRatio;
-    relativeCamPos.z = sin(phase) * deepNess/2 * targetShiftedRatio;
+    relativeCamPos.x = cos(phase) * range.x/2 * targetShiftedRatio;
+    relativeCamPos.z = sin(phase) * range.z/2 * targetShiftedRatio;
     relativeCamPos.y = 0;
     
     
     return relativeCamPos;
 }
 
-//MoveControl::MoveControl(Move *move_){
-//    move = move_;
-//}
+void VibrateMove::setParameter(float period_){
+    period = period_;
+}
+
+ofVec3f VibrateMove::get(float time){
+    float c = cos(TWO_PI/period*time);
+    return range*c/2;
+}
+
 
 void MoveControl::setMovementType(Move *move_){
     move = move_;
