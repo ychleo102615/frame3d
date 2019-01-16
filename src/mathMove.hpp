@@ -20,10 +20,10 @@ public:
     virtual ofVec3f get(float time);
     void setMoveRange(ofVec3f range_);
     void setParameter();
-    
-    float width;
-    float height;
-    float deepNess;
+
+//    float width;
+//    float height;
+//    float deepNess;
     ofVec3f range;
 };
 

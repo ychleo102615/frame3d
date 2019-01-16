@@ -12,9 +12,6 @@ ofVec3f Move::get(float time){
 }
 
 void Move::setMoveRange(ofVec3f range_){
-//    width = range.x;
-//    height = range.y;
-//    deepNess = range.z;
     range = range_;
 }
 
