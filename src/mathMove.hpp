@@ -50,6 +50,14 @@ public:
     float period;
 };
 
+class SquareMove : public Move{
+public:
+    void setParameter(ofVec3f square_);
+    ofVec3f get(float time);
+    
+    ofVec3f square;
+};
+
 class MoveControl{
 public:
     Move *move;
