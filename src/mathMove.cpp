@@ -15,6 +15,25 @@ void Move::setMoveRange(ofVec3f range_){
     range = range_;
 }
 
+void CircularMove::setParameter(float period_, int cycleNum_){
+    period = period_;
+    cycleNum = cycleNum_;
+}
+
+ofVec3f CircularMove::get(float time){
+    
+    float time2Radiant = TWO_PI*cycleNum/period;
+    
+    float phase = time*time2Radiant;
+    
+    ofVec3f camPos;
+    camPos.x = cos(phase) * range.x/2;
+    camPos.z = sin(phase) * range.z/2;
+    camPos.y = 0;
+    
+    return camPos;
+}
+
 void SpiralMove::setParameter(float period_, int cycleNum_){
     period = period_;
     cycleNum = cycleNum_;
@@ -35,18 +54,19 @@ ofVec3f SpiralMove::get(float time){
     
     targetShiftedRatio = targetRatio * (upLet - lowLet) + lowLet;
     
-    ofVec3f relativeCamPos;
+    ofVec3f camPos;
     
-    float time2Radiant = TWO_PI*cycleNum/period;
+//    float time2Radiant = TWO_PI*cycleNum/period;
+//
+//    float phase = time*time2Radiant;
+//
+//    camPos.x = cos(phase) * range.x/2 * targetShiftedRatio;
+//    camPos.z = sin(phase) * range.z/2 * targetShiftedRatio;
+//    camPos.y = 0;
+    camPos = CircularMove::get(time) * targetShiftedRatio;
     
-    float phase = time*time2Radiant;
     
-    relativeCamPos.x = cos(phase) * range.x/2 * targetShiftedRatio;
-    relativeCamPos.z = sin(phase) * range.z/2 * targetShiftedRatio;
-    relativeCamPos.y = 0;
-    
-    
-    return relativeCamPos;
+    return camPos;
 }
 
 void VibrateMove::setParameter(float period_){

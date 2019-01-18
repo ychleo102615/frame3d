@@ -27,7 +27,16 @@ public:
     ofVec3f range;
 };
 
-class SpiralMove : public Move{
+class CircularMove : public Move{
+public:
+    void setParameter(float period_, int cycleNum_);
+    ofVec3f get(float time);
+    
+    float period;
+    int cycleNum;
+};
+
+class SpiralMove : public CircularMove{//public Move{
 public:
     void setParameter(float period_, int cycleNum_);
     ofVec3f get(float time);
@@ -38,8 +47,8 @@ public:
     float upLet = 1.3;
     float lowLet = 0.3;
     
-    float period;
-    int cycleNum;
+//    float period;
+//    int cycleNum;
 };
 
 class VibrateMove : public Move{
@@ -55,7 +64,6 @@ public:
     void setParameter(ofVec3f square_);
     ofVec3f get(float time);
     
-    ofVec3f square;
 };
 
 class MoveControl{
