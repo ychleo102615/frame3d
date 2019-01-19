@@ -55,14 +55,7 @@ ofVec3f SpiralMove::get(float time){
     targetShiftedRatio = targetRatio * (upLet - lowLet) + lowLet;
     
     ofVec3f camPos;
-    
-//    float time2Radiant = TWO_PI*cycleNum/period;
-//
-//    float phase = time*time2Radiant;
-//
-//    camPos.x = cos(phase) * range.x/2 * targetShiftedRatio;
-//    camPos.z = sin(phase) * range.z/2 * targetShiftedRatio;
-//    camPos.y = 0;
+
     camPos = CircularMove::get(time) * targetShiftedRatio;
     
     
@@ -85,4 +78,37 @@ void MoveControl::setMovementType(Move *move_){
 
 ofVec3f MoveControl::get(float time){
     return move->get(time);
+}
+
+void Undulation::setPeakAndPeriod(float peakRatio_, float period_){
+    
+    setPeakRatio(peakRatio_);
+    setPeriods(period_);
+}
+
+void Undulation::setPeakRatio(float peakRatio_){
+    peakRatio = peakRatio_;
+}
+
+void Undulation::setPeriods(float period_){
+    periodUndu = period_;
+    prePeriod = periodUndu * peakRatio;
+    complementPeriod = periodUndu - prePeriod;
+}
+
+float Undulation::getUndulation(float time){
+    
+    currentTime = fmod(time, periodUndu);
+    if(currentTime < prePeriod){
+        phase = currentTime*(PI/prePeriod);
+    }
+    else {
+        phase = (currentTime-prePeriod)*(PI/complementPeriod) + PI;
+    }
+    
+    
+    targetRatio = (1 - cos(phase)) / 2;
+    targetShiftedRatio = targetRatio * (upLet - lowLet) + lowLet;
+    
+    return targetShiftedRatio;
 }

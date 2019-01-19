@@ -52,6 +52,8 @@ void ofApp::setup(){
     cam.setPosition(0, 0, 0);
     cam.lookAt(hallCenter);
     useCam = false;
+    
+    nami.setPeakAndPeriod(0.5, cycleTime);
 }
 
 //--------------------------------------------------------------
@@ -63,6 +65,10 @@ void ofApp::update(){
     pointLight.setPosition(0, cos(ofGetElapsedTimef()*.6f)*1000, sin(ofGetElapsedTimef()*.6f)*1000);
     
     camMove();
+    
+    cout << "time and ratio: " << ofGetElapsedTimef();
+    cout << " " << nami.getUndulation(ofGetElapsedTimef()) << endl;
+    cout << "---------------------------------" << endl;
 }
 
 //--------------------------------------------------------------

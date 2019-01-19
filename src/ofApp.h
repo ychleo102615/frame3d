@@ -38,6 +38,7 @@ class ofApp : public ofBaseApp{
     VibrateMove vb;
     MoveControl mcVibrate;
     
+    Undulation nami;
     
     const float deepNess = 3000;//1000;
     const float cycleTime = 10;

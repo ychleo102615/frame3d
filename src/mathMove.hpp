@@ -73,3 +73,24 @@ public:
     void setMovementType(Move *move_);
     ofVec3f get(float time);
 };
+
+class Undulation{
+public:
+    float peakRatio;
+    float upLet = 1;
+    float lowLet = 0;
+    
+    float prePeriod;
+    float complementPeriod;
+    float periodUndu;
+    
+    float phase;
+    float currentTime;
+    float targetRatio;
+    float targetShiftedRatio;
+    
+    void setPeakAndPeriod(float peakRatio_, float period_);
+    void setPeakRatio(float peakRatio_);
+    void setPeriods(float period_);
+    float getUndulation(float time);
+};
