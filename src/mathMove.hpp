@@ -27,6 +27,28 @@ public:
     ofVec3f range;
 };
 
+class Undulation{
+public:
+    float peakRatio;
+    float upLet = 1.1;
+    float lowLet = 0.1;
+    
+    float prePeriod;
+    float complementPeriod;
+    float periodUndu;
+    
+    float phase;
+    float currentTime;
+    float targetRatio;
+    float targetShiftedRatio;
+    
+    void setPeakAndPeriod(float peakRatio_, float period_);
+    void setPeakRatio(float peakRatio_);
+    void setPeriods(float period_);
+    float getUndulation(float time);
+};
+
+
 class CircularMove : public Move{
 public:
     void setParameter(float period_, int cycleNum_);
@@ -36,19 +58,17 @@ public:
     int cycleNum;
 };
 
-class SpiralMove : public CircularMove{//public Move{
+class SpiralMove : public CircularMove, public Undulation{//public Move{
 public:
     void setParameter(float period_, int cycleNum_);
     ofVec3f get(float time);
     SpiralMove(){};
     ~SpiralMove(){};
     
-    float peakRatio = 0.9;
-    float upLet = 1.3;
-    float lowLet = 0.3;
-    
-//    float period;
-//    int cycleNum;
+//    float peakRatio = 0.9;
+//    float upLet = 1.3;
+//    float lowLet = 0.3;
+
 };
 
 class VibrateMove : public Move{
@@ -74,23 +94,3 @@ public:
     ofVec3f get(float time);
 };
 
-class Undulation{
-public:
-    float peakRatio;
-    float upLet = 1;
-    float lowLet = 0;
-    
-    float prePeriod;
-    float complementPeriod;
-    float periodUndu;
-    
-    float phase;
-    float currentTime;
-    float targetRatio;
-    float targetShiftedRatio;
-    
-    void setPeakAndPeriod(float peakRatio_, float period_);
-    void setPeakRatio(float peakRatio_);
-    void setPeriods(float period_);
-    float getUndulation(float time);
-};
