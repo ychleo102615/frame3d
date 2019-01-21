@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/mathMove.cpp"
-            timestampString = "569691083.8930039"
+            timestampString = "569778838.837775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "SpiralMove::get(float time)"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "CircularMove::get(float time)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

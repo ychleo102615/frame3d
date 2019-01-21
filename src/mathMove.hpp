@@ -56,6 +56,11 @@ public:
     
     float period;
     int cycleNum;
+    
+    ofVec3f baseNormalVector = ofVec3f(0,0,1);
+    ofVec3f targetNormalVector = ofVec3f(0,1,0);
+    
+    ofVec3f getCrossVector();
 };
 
 class SpiralMove : public CircularMove, public Undulation{//public Move{
@@ -68,6 +73,8 @@ public:
 //    float peakRatio = 0.9;
 //    float upLet = 1.3;
 //    float lowLet = 0.3;
+    
+
 
 };
 

@@ -27,12 +27,20 @@ ofVec3f CircularMove::get(float time){
     float phase = time*time2Radiant;
     
     ofVec3f camPos;
+    
+    ofVec3f rotateAxis = getCrossVector();
+    
     camPos.x = cos(phase) * range.x/2;
     camPos.z = sin(phase) * range.z/2;
     camPos.y = 0;
     
     return camPos;
 }
+
+ofVec3f CircularMove::getCrossVector(){
+    return baseNormalVector.cross(targetNormalVector);
+}
+
 
 void SpiralMove::setParameter(float period_, int cycleNum_){
     period = period_;
@@ -42,25 +50,8 @@ void SpiralMove::setParameter(float period_, int cycleNum_){
 }
 
 ofVec3f SpiralMove::get(float time){
-    /*
-    float currentRatio = fmod(time, period)/period;
-    float targetRatio;
-    float targetShiftedRatio;
-    
-    if(currentRatio < peakRatio){
-        targetRatio = currentRatio/peakRatio;
-    }
-    else{
-        targetRatio = 1 - (currentRatio - peakRatio)/(1 - peakRatio);
-    }
-    
-    targetShiftedRatio = targetRatio * (upLet - lowLet) + lowLet;
-    */
     ofVec3f camPos;
-
-//    camPos = CircularMove::get(time) * targetShiftedRatio;
     camPos = CircularMove::get(time) * getUndulation(time);
-    
     
     return camPos;
 }
