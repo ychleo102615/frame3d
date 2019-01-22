@@ -29,16 +29,20 @@ ofVec3f CircularMove::get(float time){
     ofVec3f camPos;
     
     ofVec3f rotateAxis = getCrossVector();
-    
-    camPos.x = cos(phase) * range.x/2;
-    camPos.z = sin(phase) * range.z/2;
-    camPos.y = 0;
+    camPos = ofVec3f(cos(phase)*range.x/2, sin(phase)*range.x/2, 0);
+//    camPos *= range.x/2;
+    float angle = targetNormalVector.angle(baseNormalVector);
+    targetNormalVector.rotate(ofGetElapsedTimef()/10, ofVec3f(1,0,0));
+    camPos = camPos.getRotated(angle, rotateAxis);
+//    camPos.x = cos(phase) * range.x/2;
+//    camPos.z = sin(phase) * range.z/2;
+//    camPos.y = 0;
     
     return camPos;
 }
 
 ofVec3f CircularMove::getCrossVector(){
-    return baseNormalVector.cross(targetNormalVector);
+    return baseNormalVector.getCrossed(targetNormalVector);
 }
 
 

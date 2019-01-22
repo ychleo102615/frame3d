@@ -69,12 +69,6 @@ public:
     ofVec3f get(float time);
     SpiralMove(){};
     ~SpiralMove(){};
-    
-//    float peakRatio = 0.9;
-//    float upLet = 1.3;
-//    float lowLet = 0.3;
-    
-
 
 };
 
