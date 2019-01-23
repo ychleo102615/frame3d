@@ -26,25 +26,25 @@ ofVec3f CircularMove::get(float time){
     
     float phase = time*time2Radiant;
     
-    ofVec3f camPos;
+//    ofVec3f position;
     
-    ofVec3f rotateAxis = getCrossVector();
-    camPos = ofVec3f(cos(phase)*range.x/2, sin(phase)*range.x/2, 0);
-//    camPos *= range.x/2;
-    float angle = targetNormalVector.angle(baseNormalVector);
-    targetNormalVector.rotate(ofGetElapsedTimef()/10, ofVec3f(1,0,0));
-    camPos = camPos.getRotated(angle, rotateAxis);
-//    camPos.x = cos(phase) * range.x/2;
-//    camPos.z = sin(phase) * range.z/2;
-//    camPos.y = 0;
+    position = ofVec3f(cos(phase), sin(phase), 0);
+    position *= range/2;
+//    targetNormalVector.rotate(ofGetElapsedTimef()/10, ofVec3f(1,0,0));
+    rotate2TargetPlane();
     
-    return camPos;
+    return position;
 }
 
 ofVec3f CircularMove::getCrossVector(){
     return baseNormalVector.getCrossed(targetNormalVector);
 }
 
+void CircularMove::rotate2TargetPlane(){
+    ofVec3f rotateAxis = getCrossVector();
+    float angle = targetNormalVector.angle(baseNormalVector);
+    position.rotate(angle, rotateAxis);
+}
 
 void SpiralMove::setParameter(float period_, int cycleNum_){
     period = period_;
@@ -54,10 +54,10 @@ void SpiralMove::setParameter(float period_, int cycleNum_){
 }
 
 ofVec3f SpiralMove::get(float time){
-    ofVec3f camPos;
-    camPos = CircularMove::get(time) * getUndulation(time);
+//    ofVec3f position;
+    position = CircularMove::get(time) * getUndulation(time);
     
-    return camPos;
+    return position;
 }
 
 void VibrateMove::setParameter(float period_){

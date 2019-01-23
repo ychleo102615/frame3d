@@ -25,6 +25,7 @@ public:
 //    float height;
 //    float deepNess;
     ofVec3f range;
+    ofVec3f position;
 };
 
 class Undulation{
@@ -61,6 +62,7 @@ public:
     ofVec3f targetNormalVector = ofVec3f(0,1,0);
     
     ofVec3f getCrossVector();
+    void rotate2TargetPlane();
 };
 
 class SpiralMove : public CircularMove, public Undulation{//public Move{
