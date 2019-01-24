@@ -46,6 +46,10 @@ void CircularMove::rotate2TargetPlane(){
     position.rotate(angle, rotateAxis);
 }
 
+void CircularMove::setTargetPlane(ofVec3f targetNormalVector_){
+    targetNormalVector = targetNormalVector_;
+}
+
 void SpiralMove::setParameter(float period_, int cycleNum_){
     period = period_;
     cycleNum = cycleNum_;

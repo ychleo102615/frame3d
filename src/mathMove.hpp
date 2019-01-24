@@ -63,6 +63,7 @@ public:
     
     ofVec3f getCrossVector();
     void rotate2TargetPlane();
+    void setTargetPlane(ofVec3f targetNormalVector_);
 };
 
 class SpiralMove : public CircularMove, public Undulation{//public Move{
