@@ -15,18 +15,18 @@ void Move::setMoveRange(ofVec3f range_){
     range = range_;
 }
 
-void CircularMove::setParameter(float period_, int cycleNum_){
+
+void CircularMove::setParameter(ofVec3f normalVector_, float period_, int cycleNum_){
     period = period_;
     cycleNum = cycleNum_;
+    normalVector = normalVector_;
+    targetNormalVector = normalVector_;
 }
 
 ofVec3f CircularMove::get(float time){
     
     float time2Radiant = TWO_PI*cycleNum/period;
-    
     float phase = time*time2Radiant;
-    
-//    ofVec3f position;
     
     position = ofVec3f(cos(phase), sin(phase), 0);
     position *= range/2;
@@ -50,9 +50,8 @@ void CircularMove::setTargetPlane(ofVec3f targetNormalVector_){
     targetNormalVector = targetNormalVector_;
 }
 
-void SpiralMove::setParameter(float period_, int cycleNum_){
-    period = period_;
-    cycleNum = cycleNum_;
+void SpiralMove::setParameter(ofVec3f normalVector_, float period_, int cycleNum_){
+    CircularMove::setParameter(normalVector_, period_, cycleNum_);
     
     setPeakAndPeriod(0.9, period_);
 }

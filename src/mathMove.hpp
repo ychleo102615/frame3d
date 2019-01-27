@@ -21,9 +21,6 @@ public:
     void setMoveRange(ofVec3f range_);
     void setParameter();
 
-//    float width;
-//    float height;
-//    float deepNess;
     ofVec3f range;
     ofVec3f position;
 };
@@ -52,26 +49,28 @@ public:
 
 class CircularMove : public Move{
 public:
-    void setParameter(float period_, int cycleNum_);
+    void setParameter(ofVec3f normalVector_, float period_, int cycleNum_);
     ofVec3f get(float time);
+    ofVec3f getCrossVector();
+    void rotate2TargetPlane();
+    void setTargetPlane(ofVec3f targetNormalVector_);
     
     float period;
     int cycleNum;
     
+    ofVec3f normalVector;
     ofVec3f baseNormalVector = ofVec3f(0,0,1);
     ofVec3f targetNormalVector = ofVec3f(0,1,0);
     
-    ofVec3f getCrossVector();
-    void rotate2TargetPlane();
-    void setTargetPlane(ofVec3f targetNormalVector_);
 };
 
 class SpiralMove : public CircularMove, public Undulation{//public Move{
 public:
-    void setParameter(float period_, int cycleNum_);
-    ofVec3f get(float time);
     SpiralMove(){};
     ~SpiralMove(){};
+    void setParameter(ofVec3f normalVector_, float period_, int cycleNum_);
+    ofVec3f get(float time);
+    
 
 };
 

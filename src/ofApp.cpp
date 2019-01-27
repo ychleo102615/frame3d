@@ -43,7 +43,7 @@ void ofApp::setup(){
     
     // Setting camera move rule, check camMove()
     sp.setMoveRange(spaceRange);
-    sp.setParameter(cycleTime, 2);
+    sp.setParameter(ofVec3f(0,1,0), cycleTime, 2);
     mcSpiral.setMovementType(&sp);
     vb.setMoveRange(ofVec3f(0, spaceRange.y/10, 0));
     vb.setParameter(2.0);
@@ -63,6 +63,8 @@ void ofApp::update(){
     
     pointLight.setPosition(0, cos(ofGetElapsedTimef()*.6f)*1000, sin(ofGetElapsedTimef()*.6f)*1000);
     
+    float phase = ofGetElapsedTimef()*TWO_PI/cycleTime;
+    sp.setTargetPlane(ofVec3f(cos(phase)/2, 1, sin(phase)/2));
     camMove();
 }
 
@@ -219,7 +221,7 @@ void ofApp::drawTestingCubes(){
 
 void ofApp::camMove(){
 
-    ofVec3f camPos = hallCenter + mcSpiral.get(ofGetElapsedTimef()) + mcVibrate.get(ofGetElapsedTimef());
+    ofVec3f camPos = hallCenter + mcSpiral.get(ofGetElapsedTimef());// + mcVibrate.get(ofGetElapsedTimef());
     
     cam.setPosition(camPos);
     cam.lookAt(hallCenter);
