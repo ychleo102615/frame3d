@@ -40,9 +40,13 @@ ofVec3f CircularMove::getCrossVector(){
     return baseNormalVector.getCrossed(targetNormalVector);
 }
 
+float CircularMove::getAngle(){
+    return targetNormalVector.angle(baseNormalVector);
+}
+
 void CircularMove::rotate2TargetPlane(){
     ofVec3f rotateAxis = getCrossVector();
-    float angle = targetNormalVector.angle(baseNormalVector);
+    float angle = getAngle();// targetNormalVector.angle(baseNormalVector);
     position.rotate(angle, rotateAxis);
 }
 

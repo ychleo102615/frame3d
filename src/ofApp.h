@@ -46,4 +46,5 @@ class ofApp : public ofBaseApp{
     void drawBase(float size);
     void drawTestingCubes();
     void camMove();
+    void showCameraTrail();
 };

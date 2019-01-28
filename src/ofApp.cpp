@@ -102,6 +102,8 @@ void ofApp::draw(){
     ofSetColor(200, 100, 100);
     ofDrawSphere(pointLight.getPosition(), 20);
     
+    showCameraTrail();
+    
     if(useCam)
         cam.end();
     else
@@ -223,6 +225,22 @@ void ofApp::camMove(){
 
     ofVec3f camPos = hallCenter + mcSpiral.get(ofGetElapsedTimef());// + mcVibrate.get(ofGetElapsedTimef());
     
+
+    
     cam.setPosition(camPos);
     cam.lookAt(hallCenter);
+}
+
+void ofApp::showCameraTrail(){
+    ofPushStyle();
+    ofPushMatrix();
+    ofTranslate(hallCenter);
+    ofSetColor(ofColor::sandyBrown, 50);
+    ofVec3f rotate = sp.getCrossVector();
+    ofRotateDeg(sp.getAngle(), rotate.x, rotate.y, rotate.z);
+    ofDrawEllipse(0,0,0, spaceRange.x, spaceRange.y);
+    ofPopMatrix();
+    ofVec3f pos = cam.getPosition();
+    ofDrawBox(pos, 100);
+    ofPopStyle();
 }

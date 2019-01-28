@@ -52,6 +52,7 @@ public:
     void setParameter(ofVec3f normalVector_, float period_, int cycleNum_);
     ofVec3f get(float time);
     ofVec3f getCrossVector();
+    float getAngle();
     void rotate2TargetPlane();
     void setTargetPlane(ofVec3f targetNormalVector_);
     
