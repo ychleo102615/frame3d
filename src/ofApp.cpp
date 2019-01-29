@@ -22,7 +22,7 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*3, deepNess);
+    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*1, deepNess);
 //    hallCenter = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2);
     hallCenter = spaceRange/2;
     
@@ -241,6 +241,6 @@ void ofApp::showCameraTrail(){
     ofDrawEllipse(0,0,0, spaceRange.x, spaceRange.y);
     ofPopMatrix();
     ofVec3f pos = cam.getPosition();
-    ofDrawBox(pos, 100);
+    ofDrawSphere(pos, 100);
     ofPopStyle();
 }
