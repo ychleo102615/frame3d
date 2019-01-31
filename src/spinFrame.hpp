@@ -56,4 +56,5 @@ public:
     void flipNormal(ofMesh &mesh, ofMesh last);
     
     void transform();
+    void setAngle(float angle);
 };

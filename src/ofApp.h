@@ -26,6 +26,8 @@ class ofApp : public ofBaseApp{
     ofEasyCam easyCam;
     ofCamera cam;
     bool useCam;
+    bool spinTogether;
+    bool drawTrail;
     
     ofLight pointLight;
     ofLight directionalLight;

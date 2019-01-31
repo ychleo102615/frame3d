@@ -137,3 +137,7 @@ void Frame::transform(){
         transformedMesh.setVertex(i, mesh.getVertex(i) * factor);
     }
 }
+
+void Frame::setAngle(float angle){
+    rotateAngle = angle;
+}

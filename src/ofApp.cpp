@@ -52,14 +52,24 @@ void ofApp::setup(){
     cam.setPosition(0, 0, 0);
     cam.lookAt(hallCenter);
     useCam = false;
+    spinTogether = false;
+    drawTrail = false;
     
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for(int i=0;i<frames.size();i++){
-        frames.at(i).update();
+    if(spinTogether){
+        for(int i=0;i<frames.size();i++){
+            frames.at(i).setAngle((fmod(ofGetElapsedTimef(),cycleTime))*360/cycleTime);
+        }
     }
+    else{
+        for(int i=0;i<frames.size();i++){
+            frames.at(i).update();
+        }
+    }
+        
     
     pointLight.setPosition(0, cos(ofGetElapsedTimef()*.6f)*1000, sin(ofGetElapsedTimef()*.6f)*1000);
     
@@ -102,7 +112,8 @@ void ofApp::draw(){
     ofSetColor(200, 100, 100);
     ofDrawSphere(pointLight.getPosition(), 20);
     
-    showCameraTrail();
+    if(drawTrail)
+        showCameraTrail();
     
     if(useCam)
         cam.end();
@@ -114,6 +125,10 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     if(key == ' ')
         useCam = !useCam;
+    if(key == 's')
+        spinTogether = !spinTogether;
+    if(key == 't')
+        drawTrail = !drawTrail;
 }
 
 //--------------------------------------------------------------
