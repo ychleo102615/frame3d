@@ -57,4 +57,5 @@ public:
     
     void transform();
     void setAngle(float angle);
+    void setColor(ofColor c);
 };

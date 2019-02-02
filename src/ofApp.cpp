@@ -51,7 +51,7 @@ void ofApp::setup(){
     
     cam.setPosition(0, 0, 0);
     cam.lookAt(hallCenter);
-    useCam = false;
+    useCam = true;
     spinTogether = false;
     drawTrail = false;
     
@@ -59,15 +59,20 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if(spinTogether){
-        for(int i=0;i<frames.size();i++){
+    for(int i=0;i<frames.size();i++){
+        if(spinTogether)
             frames.at(i).setAngle((fmod(ofGetElapsedTimef(),cycleTime))*360/cycleTime);
-        }
-    }
-    else{
-        for(int i=0;i<frames.size();i++){
+        else
             frames.at(i).update();
+        
+        float colorSeed = ofGetElapsedTimef()*10+i;
+        
+        ofColor c = ofColor(fmod(colorSeed+11*i, 256),fmod(colorSeed+6*i, 256),fmod(colorSeed, 256));
+        if(i==8){
+            cout << colorSeed << " " << c << endl;
         }
+        
+        frames.at(i).setColor(c);
     }
         
     

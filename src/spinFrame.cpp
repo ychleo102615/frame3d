@@ -141,3 +141,8 @@ void Frame::transform(){
 void Frame::setAngle(float angle){
     rotateAngle = angle;
 }
+
+void Frame::setColor(ofColor c){
+    color = c;
+    material.setDiffuseColor(color);
+}
