@@ -59,6 +59,9 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    ofColor rb = ofColor::royalBlue;
+    ofColor target = ofColor::coral;
     for(int i=0;i<frames.size();i++){
         if(spinTogether)
             frames.at(i).setAngle((fmod(ofGetElapsedTimef(),cycleTime))*360/cycleTime);
@@ -67,10 +70,11 @@ void ofApp::update(){
         
         float colorSeed = ofGetElapsedTimef()*10+i;
         
-        ofColor c = ofColor(fmod(colorSeed+11*i, 256),fmod(colorSeed+6*i, 256),fmod(colorSeed, 256));
-        if(i==8){
-            cout << colorSeed << " " << c << endl;
-        }
+//        ofColor c = ofColor(fmod(colorSeed+11*i, 256),fmod(colorSeed+6*i, 256),fmod(colorSeed, 256));
+        int channel = 5;
+        int colorPeriod = i%channel+1;
+        float lerp = (sin(fmod(ofGetElapsedTimef(),colorPeriod)*TWO_PI/colorPeriod)+1)/2;
+        ofColor c = rb.getLerped(target, lerp);
         
         frames.at(i).setColor(c);
     }
