@@ -30,12 +30,13 @@ void ofApp::setup(){
     for(int i=0;i<100;i++){//24
 //        ofVec3f frameCenter = ofVec3f(0,0,0);
 //        ofVec3f frameCenter = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-        ofVec3f frameCenter = ofVec3f(ofRandom(spaceRange.x), ofRandom(spaceRange.y), ofRandom(spaceRange.z));
+//        ofVec3f frameCenter = ofVec3f(ofRandom(spaceRange.x), ofRandom(spaceRange.y), ofRandom(spaceRange.z));//best version
+        ofVec3f frameCenter = ofVec3f(0, spaceRange.y/2, 200*i);
         
-//        ofVec2f lengthVector = ofVec2f(70*(i+1), 50*(i+1));
+        ofVec2f lengthVector = ofVec2f(700, 500);
 //        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
-        float r = ofRandom(30);
-        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (r+1)/5), 50*pow(1.5, (r+1)/5));
+//        float r = ofRandom(30);
+//        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (r+1)/5), 50*pow(1.5, (r+1)/5));
         frames.push_back(Frame(frameCenter, lengthVector));
     }
     

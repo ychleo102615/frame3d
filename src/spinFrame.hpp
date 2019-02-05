@@ -10,10 +10,11 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "mathMove.hpp"
 
 #endif /* spinFrame_hpp */
 
-class Frame{
+class Frame : public CircularMove{
 private:
     ofVec3f center;
     ofVec3f corner;

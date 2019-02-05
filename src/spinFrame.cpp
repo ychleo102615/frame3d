@@ -22,12 +22,17 @@ Frame::Frame(ofVec3f center_, ofVec2f lv){
     build();
     
     initializePhysicalState();
+    
+    setParameter(ofVec3f(0,1,0), 3, 1);
+    setMoveRange(ofVec3f(100,400,100));
 }
 
 void Frame::drawMeshFrame(){
     ofPushStyle();
     ofPushMatrix();
-    ofTranslate(center);
+    get(ofGetElapsedTimef());
+    ofVec3f look = center + position;
+    ofTranslate(look);
     ofRotateYDeg(rotateAngle);
     
 //    mesh.draw();
