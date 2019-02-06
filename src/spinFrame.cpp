@@ -7,7 +7,8 @@
 
 #include "spinFrame.hpp"
 
-Frame::Frame(ofVec3f center_, ofVec2f lv){
+Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
+    id = id_;
     center = center_;
     lengthVector = lv;
     radiusVector = lengthVector/2;
@@ -23,16 +24,16 @@ Frame::Frame(ofVec3f center_, ofVec2f lv){
     
     initializePhysicalState();
     
-    setParameter(ofVec3f(0,1,0), 3, 1);
-    setMoveRange(ofVec3f(100,400,100));
+    setParameter(ofVec3f(0,0,1), 3, 1);
+    setMoveRange(ofVec3f(400,400,100));
 }
 
 void Frame::drawMeshFrame(){
     ofPushStyle();
     ofPushMatrix();
-    get(ofGetElapsedTimef());
-    ofVec3f look = center + position;
-    ofTranslate(look);
+//    get(ofGetElapsedTimef());
+//    ofVec3f look = center + position;
+    ofTranslate(center + get(ofGetElapsedTimef()+(float)id/period));
     ofRotateYDeg(rotateAngle);
     
 //    mesh.draw();

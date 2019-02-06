@@ -37,7 +37,7 @@ void ofApp::setup(){
 //        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
 //        float r = ofRandom(30);
 //        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (r+1)/5), 50*pow(1.5, (r+1)/5));
-        frames.push_back(Frame(frameCenter, lengthVector));
+        frames.push_back(Frame(frameCenter, lengthVector, i));
     }
     
     

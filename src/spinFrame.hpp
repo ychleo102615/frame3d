@@ -33,6 +33,8 @@ private:
     float rotateForce;
     float time;
     
+    int id;
+    
     
     float thickNess;
     float thickNessRatio;
@@ -42,7 +44,7 @@ private:
     ofMaterial material;
     
 public:
-    Frame(ofVec3f center_, ofVec2f lv);
+    Frame(ofVec3f center_, ofVec2f lv, int id_);
     void drawMeshFrame();
     void drawPathFrame();
     
