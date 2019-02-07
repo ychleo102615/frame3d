@@ -22,9 +22,10 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*1, deepNess);
-//    hallCenter = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, deepNess/2);
-    hallCenter = spaceRange/2;
+    spaceRange = ofVec3f(ofGetWidth()*1, ofGetHeight()*3, deepNess);
+    
+//    hallCenter = spaceRange/2;
+    hallCenter = ofVec3f(0,spaceRange.y/2,deepNess/2);
     
 
     for(int i=0;i<100;i++){//24
@@ -84,7 +85,7 @@ void ofApp::update(){
     pointLight.setPosition(0, cos(ofGetElapsedTimef()*.6f)*1000, sin(ofGetElapsedTimef()*.6f)*1000);
     
     float phase = ofGetElapsedTimef()*TWO_PI/cycleTime;
-    sp.setTargetPlane(ofVec3f(cos(phase)/2, 1, sin(phase)/2));
+//    sp.setTargetPlane(ofVec3f(cos(phase)/2, 1, sin(phase)/2));
     camMove();
 }
 

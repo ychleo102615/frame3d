@@ -24,7 +24,7 @@ Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
     
     initializePhysicalState();
     
-    setParameter(ofVec3f(0,0,1), 3, 1);
+    setParameter(ofVec3f(1,1,1), 3, 1);
     setMoveRange(ofVec3f(400,400,100));
 }
 
