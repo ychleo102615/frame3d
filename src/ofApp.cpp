@@ -22,7 +22,7 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-    spaceRange = ofVec3f(ofGetWidth()*1, ofGetHeight()*3, deepNess);
+    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*10, deepNess);
     
 //    hallCenter = spaceRange/2;
     hallCenter = ofVec3f(0,spaceRange.y/2,deepNess/2);
