@@ -120,7 +120,9 @@ void Frame::update(){
     time++;
     rotateAngle += rotateSpeed;
     rotateSpeed += rotateForce;
-    rotateForce = sin(time*radiusVector.x/360/30)*0.01;
+//    rotateForce = sin(time*radiusVector.x/360/30)*0.01;
+    float p = 2000;
+    rotateForce = (fmod(time+id*5, p) > p/4 && fmod(time, p)<=3*p/4)?0.001:-0.001;
     transform();
 }
 

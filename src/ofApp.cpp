@@ -32,7 +32,7 @@ void ofApp::setup(){
 //        ofVec3f frameCenter = ofVec3f(0,0,0);
 //        ofVec3f frameCenter = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
 //        ofVec3f frameCenter = ofVec3f(ofRandom(spaceRange.x), ofRandom(spaceRange.y), ofRandom(spaceRange.z));//best version
-        ofVec3f frameCenter = ofVec3f(0, spaceRange.y/2, 200*i);
+        ofVec3f frameCenter = ofVec3f(0, spaceRange.y/2, 150*i - 100);
         
         ofVec2f lengthVector = ofVec2f(700, 500);
 //        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
