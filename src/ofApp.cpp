@@ -13,7 +13,7 @@ void ofApp::setup(){
     
     pointLight.setSpecularColor( ofColor(255.f, 255.f, 255.f));
     pointLight.setPointLight();
-    directionalLight.setDiffuseColor(ofColor(0.f, 0.f, 255.f));
+    directionalLight.setDiffuseColor(ofColor(255.f, 255.f, 255.f));
     directionalLight.setSpecularColor(ofColor(255.f, 255.f, 255.f));
     directionalLight.setDirectional();
     directionalLight.setOrientation( ofVec3f(0, 90, 0) );
@@ -22,25 +22,28 @@ void ofApp::setup(){
     material.setShininess(120);
     material.setSpecularColor(ofColor(255,255,255,255));
     
-    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*10, deepNess);
+    spaceRange = ofVec3f(ofGetWidth()*3, ofGetHeight()*3, deepNess);
     
 //    hallCenter = spaceRange/2;
     hallCenter = ofVec3f(0,spaceRange.y/2,deepNess/2);
     
-
+    /*
     for(int i=0;i<100;i++){//24
-//        ofVec3f frameCenter = ofVec3f(0,0,0);
-//        ofVec3f frameCenter = ofVec3f(ofRandomWidth(), ofRandomHeight(), ofRandom(1000));
-//        ofVec3f frameCenter = ofVec3f(ofRandom(spaceRange.x), ofRandom(spaceRange.y), ofRandom(spaceRange.z));//best version
-        ofVec3f frameCenter = ofVec3f(0, spaceRange.y/2, 150*i - 100);
         
         ofVec2f lengthVector = ofVec2f(700, 500);
 //        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (i+1)/5), 50*pow(1.5, (i+1)/5));
 //        float r = ofRandom(30);
 //        ofVec2f lengthVector = ofVec2f(70*pow(1.5, (r+1)/5), 50*pow(1.5, (r+1)/5));
         frames.push_back(Frame(frameCenter, lengthVector, i));
-    }
+    }*/
     
+    for(int i=0;i<10;i++){
+        for(int j=0;j<10;j++){
+            ofVec2f lengthVector = ofVec2f(500, 500);
+            ofVec3f frameCenter = ofVec3f(800*i-4000, spaceRange.y/2, 400*j);
+            frames.push_back(Frame(frameCenter, lengthVector, i*10+j));
+        }
+    }
     
     
     // Setting camera move rule, check camMove()
@@ -62,8 +65,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    ofColor rb = ofColor::royalBlue;
-    ofColor target = ofColor::coral;
+    ofColor rb = ofColor::darkMagenta;
+    ofColor target = ofColor::goldenRod;
     for(int i=0;i<frames.size();i++){
         if(spinTogether)
             frames.at(i).setAngle((fmod(ofGetElapsedTimef(),cycleTime))*360/cycleTime);
@@ -72,10 +75,10 @@ void ofApp::update(){
         
         float colorSeed = ofGetElapsedTimef()*10+i;
         
-//        ofColor c = ofColor(fmod(colorSeed+11*i, 256),fmod(colorSeed+6*i, 256),fmod(colorSeed, 256));
-        int channel = 5;
+        int channel = 10;
         int colorPeriod = i%channel+1;
-        float lerp = (sin(fmod(ofGetElapsedTimef(),colorPeriod)*TWO_PI/colorPeriod)+1)/2;
+//        float lerp = (sin(fmod(ofGetElapsedTimef(),colorPeriod)*TWO_PI/colorPeriod)+1)/2;
+        float lerp = (float)(i%channel)/(channel - 1);
         ofColor c = rb.getLerped(target, lerp);
         
         frames.at(i).setColor(c);

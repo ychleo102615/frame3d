@@ -24,8 +24,8 @@ Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
     
     initializePhysicalState();
     
-    setParameter(ofVec3f(1,1,1), 3, 1);
-    setMoveRange(ofVec3f(400,400,100));
+    CircularMove::setParameter(ofVec3f(0,0,1), 5, 1);
+    setMoveRange(ofVec3f(1200,1200,0));
 }
 
 void Frame::drawMeshFrame(){
@@ -34,6 +34,7 @@ void Frame::drawMeshFrame(){
 //    get(ofGetElapsedTimef());
 //    ofVec3f look = center + position;
     ofTranslate(center + get(ofGetElapsedTimef()+(float)id/period));
+//    ofTranslate(center);
     ofRotateYDeg(rotateAngle);
     
 //    mesh.draw();
@@ -122,7 +123,7 @@ void Frame::update(){
     rotateSpeed += rotateForce;
 //    rotateForce = sin(time*radiusVector.x/360/30)*0.01;
     float p = 2000;
-    rotateForce = (fmod(time+id*5, p) > p/4 && fmod(time, p)<=3*p/4)?0.001:-0.001;
+//    rotateForce = (fmod(time+id*10, p) > p/4 && fmod(time, p)<=3*p/4)?0.001:-0.001;
     transform();
 }
 
@@ -139,10 +140,15 @@ void Frame::transform(){
     
     float factor;
     
-    factor = sin(time/10)/10 + 1;
+    factor = sin((time+id)/10)/2 + 1;
+    
+//    ofVec3f factorVector = ofVec3f(1,factor,1);
+    ofVec3f factorVector = ofVec3f(0,factor*500,0);
     
     for(int i=0;i<mesh.getNumVertices();i++){
-        transformedMesh.setVertex(i, mesh.getVertex(i) * factor);
+//        transformedMesh.setVertex(i, mesh.getVertex(i) * factor);
+//        transformedMesh.setVertex(i, mesh.getVertex(i) + factorVector);
+//        transformedMesh.setVertex(i, mesh.getVertex(i) * factorVector);
     }
 }
 
