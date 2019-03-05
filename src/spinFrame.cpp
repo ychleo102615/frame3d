@@ -24,8 +24,8 @@ Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
     
     initializePhysicalState();
     
-    CircularMove::setParameter(ofVec3f(0,0,1), 5, 1);
-    setMoveRange(ofVec3f(1200,1200,0));
+    CircularMove::setParameter(ofVec3f(0,0,1), 2, 1);
+    setMoveRange(ofVec3f(300,100,0));
 }
 
 void Frame::drawMeshFrame(){
@@ -33,7 +33,7 @@ void Frame::drawMeshFrame(){
     ofPushMatrix();
 //    get(ofGetElapsedTimef());
 //    ofVec3f look = center + position;
-    ofTranslate(center + get(ofGetElapsedTimef()+(float)id/period));
+    ofTranslate(center + get(ofGetElapsedTimef()+(float)id));
 //    ofTranslate(center);
     ofRotateYDeg(rotateAngle);
     
