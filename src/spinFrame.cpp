@@ -24,18 +24,20 @@ Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
     
     initializePhysicalState();
     
-    CircularMove::setParameter(ofVec3f(0,0,1), 2, 1);
-    setMoveRange(ofVec3f(300,100,0));
+    CircularMove::setParameter(ofVec3f(1,1,1), 2, 1);
+    setMoveRange(ofVec3f(300,300,0));
 }
 
 void Frame::drawMeshFrame(){
     ofPushStyle();
     ofPushMatrix();
-//    get(ofGetElapsedTimef());
 //    ofVec3f look = center + position;
     ofTranslate(center + get(ofGetElapsedTimef()+(float)id));
 //    ofTranslate(center);
     ofRotateYDeg(rotateAngle);
+    
+    ofRotateDeg(getAngle(), getCrossVector().x, getCrossVector().y, getCrossVector().z);
+    
     
 //    mesh.draw();
     material.begin();
