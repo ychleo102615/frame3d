@@ -39,9 +39,15 @@ void ofApp::setup(){
     
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
-            ofVec2f lengthVector = ofVec2f(500, 500);
-            ofVec3f frameCenter = ofVec3f(800*i-4000, spaceRange.y/2, 400*j);
-            frames.push_back(Frame(frameCenter, lengthVector, i*10+j));
+//            ofVec2f lengthVector = ofVec2f(500, 500);
+//            ofVec3f frameCenter = ofVec3f(800*i-4000, spaceRange.y/2, 400*j);
+//            frames.push_back(Frame(frameCenter, lengthVector, i*10+j));
+            
+            for(int k=0;k<10;k++){
+                ofVec2f lengthVector = ofVec2f(500, 500);
+                ofVec3f frameCenter = ofVec3f(800*i-4000, 400*j+spaceRange.y/2, 400*k);
+                frames.push_back(Frame(frameCenter, lengthVector, i*100+j*10+k));
+            }
         }
     }
     
