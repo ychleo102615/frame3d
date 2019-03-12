@@ -24,8 +24,8 @@ Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
     
     initializePhysicalState();
     
-    CircularMove::setParameter(ofVec3f(1,1,1), 2, 1);
-    setMoveRange(ofVec3f(300,300,0));
+    CircularMove::setParameter(ofVec3f(0,1,0), 2, 1);
+    setMoveRange(ofVec3f(600,600,0));
 }
 
 void Frame::drawMeshFrame(){
