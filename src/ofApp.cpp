@@ -115,9 +115,9 @@ void ofApp::draw(){
     }
     ofPushMatrix();
     for(int k=0;k<10;k++){
-        ofRotateZDeg(10);
-        ofRotateXDeg(10);
-        ofTranslate(0, 1000, 0);
+        ofRotateZDeg(90);
+        ofRotateXDeg(90);
+        ofTranslate(0, 40, 0);
         for(int i=0;i<frames.size();i++){
             frames.at(i).drawMeshFrame();
         }
