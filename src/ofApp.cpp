@@ -41,6 +41,7 @@ void ofApp::setup(){
         for(int j=0;j<10;j++){
             ofVec2f lengthVector = ofVec2f(500, 500);
             ofVec3f frameCenter = ofVec3f(800*i-4000, spaceRange.y/2, 400*j);
+//            ofVec3f frameCenter = ofVec3f(1600*i-4000, spaceRange.y/2, 800*j);
             frames.push_back(Frame(frameCenter, lengthVector, i*10+j));
         }
     }
@@ -115,8 +116,8 @@ void ofApp::draw(){
     }
     ofPushMatrix();
     for(int k=0;k<10;k++){
-        ofRotateZDeg(90);
-        ofRotateXDeg(36);
+//        ofRotateZDeg(90);
+//        ofRotateXDeg(36);
         ofTranslate(0, 40, 0);
         for(int i=0;i<frames.size();i++){
             frames.at(i).drawMeshFrame();
