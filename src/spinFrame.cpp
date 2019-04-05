@@ -24,7 +24,7 @@ Frame::Frame(ofVec3f center_, ofVec2f lv, int id_){
     
     initializePhysicalState();
     
-    CircularMove::setParameter(ofVec3f(1,1,0), 4, 1);
+    CircularMove::setParameter(ofVec3f(0,1,0), 4, 1);
     setMoveRange(ofVec3f(600,600,0));
 }
 
