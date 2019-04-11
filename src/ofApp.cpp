@@ -118,7 +118,7 @@ void ofApp::draw(){
     for(int k=0;k<10;k++){
 //        ofRotateZDeg(90);
 //        ofRotateXDeg(36);
-        ofTranslate(0, 300, 0);
+        ofTranslate(0, 600, 0);
         for(int i=0;i<frames.size();i++){
             frames.at(i).drawMeshFrame();
         }
